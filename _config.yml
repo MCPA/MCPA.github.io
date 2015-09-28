@@ -10,11 +10,9 @@ highlighter: pygments
 baseurl: ''
 paginate: 5
 permalink: pretty
-relative_permalinks: true
 version: 1.0.0
 
 # Base Jekyll Format Author
-author:
-	name:	Mark Otto
-	url:	https://github.com/poole/lanyon
-	email:	markdotto@gmail.com
+#	name:	Mark Otto
+#	url:	https://github.com/poole/lanyon
+#	email:	markdotto@gmail.com

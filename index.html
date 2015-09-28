@@ -7,7 +7,7 @@ title: Home
 	{% for post in paginator.posts %}
   	<h1><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
   	<p>
-    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &#149; {{post.author}}</span>
+    <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} &#149; {{ post.author }}{% endif %}</span>
   	</p>
   	<div class="content">
     	{{ post.content }}
