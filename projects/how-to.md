@@ -37,4 +37,4 @@ Following the header, content can be of just about any type such as, HTML or LaT
 {{ "{% highlight perl linenos " }}%} code here {{ "{% endhighlight " }}%}</code></pre></figure>
 
 <h3>Post It!</h3>
-After you are done creating the initial filename following our formatting template and creating the content inside your write-up file, push your update to the github repo. After you have committed your updates Jekyll will handle the rest!
+After you are done creating the initial filename following our formatting template and creating the content inside your write-up file, push your update to the github repo. The only files that you need to commit should be the _posts folder. After you have committed your updates Jekyll will handle the rest!
