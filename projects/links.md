@@ -15,12 +15,16 @@ date: YYYY-MM-DD HH:MM:SS
       <td>The Military Cyber Professionals Association (MCPA)</td>
 </tr>
 <tr>
-      <td><a href="https://goo.gl/XhUv3Q">https://goo.gl/XhUv3Q</a></td>
+      <td><a href="https://goo.gl/227RBl">https://goo.gl/227RBl</a></td>
       <td>Contains HoT CTF Resources.</td>
 </tr>
 <tr>
-      <td><a href="https://goo.gl/QMpz7t">https://goo.gl/QMpz7t</a></td>
+      <td><a href="https://goo.gl/z1srZt">https://goo.gl/z1srZt</a></td>
       <td>Contains HoT CTF Practice Materials.</td>
+</tr>
+<tr>
+      <td><a href="https://goo.gl/9Yzyr7">https://goo.gl/9Yzyr7</a></td>
+      <td>This website's source code.</td>
 </tr>
 <tr>
       <td><a href="https://goo.gl/Z4kfVU">https://goo.gl/Z4kfVU</a></td>
