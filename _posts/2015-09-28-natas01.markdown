@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Natas Level 1"
+date:   2015-09-28 12:52
+categories: natas wargame web overthewire
+---
+This is a solution guide to the Natas1 Level at <a href="http://natas1.natas.labs.overthewire.org">overthewire</a>. This write-up was created on 5 March 2015.
+
+First connect to the website
+<ul><li>http://natas1.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas1 and password gtVrDuiDfck831PqWsLEZy5gyDz1clto</li></ul>
+
+So this one seems pretty easy also, it says the password is on this page. However it is not visible on the page itself and right clicking is blocked. So now we just need to check the source code by using the tools from our menu instead of right clicking.
+
+The password is <code>natas2:ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi</code>
+
+There's our password!

@@ -2,7 +2,8 @@
  * Syntax highlighting styles
  */
 .highlight {
-    background: #fff;
+    background: #ffffff;
+    text-color: #008000;
     @extend %vertical-rhythm;
 
     .c     { color: #998; font-style: italic } // Comment
@@ -64,4 +65,16 @@
     .vg    { color: #008080 } // Name.Variable.Global
     .vi    { color: #008080 } // Name.Variable.Instance
     .il    { color: #099 } // Literal.Number.Integer.Long
+}
+.highlight .lineno { 
+	color: #ccc; 
+	display:inline-block; 
+	padding: 0 5px; 
+	border-right:1px solid #ccc; 
+}
+.highlight pre code { 
+	display: block; 
+	white-space: pre; 
+	overflow-x: auto; 
+	word-wrap: normal; 
 }

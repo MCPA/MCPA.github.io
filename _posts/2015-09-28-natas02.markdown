@@ -1,0 +1,27 @@
+---
+layout: post
+title:  "Natas Level 2"
+date:   2015-09-28 12:52
+categories: natas wargame web overthewire
+---
+This is a solution guide to the Natas2 Level at <a href="http://natas2.natas.labs.overthewire.org">overthewire</a>. This write-up was created on 5 March 2015.
+
+First connect to the website
+<ul><li>http://natas2.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas2 and password ZluruAthQk7Q2MqmDeTiUij2ZvWy2mBi</li></ul>
+
+Level 2 doesn't seem quite as easy. It actually says there is nothing on this page. The first step was to check the source code and of course nothing was there. However I did see the following snippet which I thought was interesting:
+
+{% highlight html linenos %}<div id="content">
+There is nothing on this page
+<img src="files/pixel.png">
+</div>
+</body></html>{% endhighlight %}
+
+So I clicked the link and was redirected to a blank page at: http://natas2.natas.labs.overthewire.org/files/pixel.png
+
+So i decided to try and see if I could access any of the directory content of the website by deleting pixel.png so the resulting url is now http://natas2.natas.labs.overthewire.org/files/
+
+At this point I was presented an index of /files consisting of pixel.png and users.txt. When I clicked on users.txt I found the password for the next level!
+
+Bingo! <code>natas3:sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14</code>
