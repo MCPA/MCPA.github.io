@@ -8,6 +8,6 @@ url: ""
 
 # Build settings
 markdown: redcarpet
-pygments: true
+highlighter: pygments
 #baseurl: /projects
 paginate: 10
