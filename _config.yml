@@ -8,5 +8,5 @@ github_username:  tentpegbob
 # Build settings
 markdown: redcarpet
 pygments: true
-baseurl: /projects
+#baseurl: /projects
 paginate: 10
