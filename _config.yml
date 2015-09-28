@@ -1,13 +1,20 @@
 # Site settings
 title: Hammer of Thor
 email: contact.ctf@milcyber.org
-description: The MCPA competitive hacking team, also known as the Hammer of Thor (HoT), competes in private and public competitions on a regular basis in order to enhance individual technical abilities across the MCPA member base. HoT competes during specified events as directed by the Team Captain.
-url: "https://MCPA.github.io"
-#github_username:
-#twitter_username:
+description: 'The MCPA competitive hacking team, also known as the Hammer of Thor (HoT), competes in private and public competitions on a regular basis in order to enhance individual technical abilities across the MCPA member base. HoT competes during specified events as directed by the Team Captain.'
+url: 'https://MCPA.github.io'
 
 # Build settings
 markdown: kramdown
 highlighter: pygments
-#baseurl: /projects
+baseurl: ''
 paginate: 5
+permalink: pretty
+relative_permalinks: true
+version: 1.0.0
+
+# Base Jekyll Format Author
+author:
+	name:	Mark Otto
+	url:	https://github.com/poole/lanyon
+	email:	markdotto@gmail.com

@@ -39,3 +39,8 @@ Following the header, content can be of just about any type such as, HTML or LaT
 
 <h3>Post It!</h3>
 After you are done creating the initial filename following our formatting template and creating the content inside your write-up file, push your update to the github repo. The only files that you need to commit should be the _posts folder. After you have committed your updates Jekyll will handle the rest!
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">git status #check and see what files you need to add
+git add "list of files you are adding to the repo"
+git commit -m "leave us all a message of what you did"
+git push</code></pre></figure>
