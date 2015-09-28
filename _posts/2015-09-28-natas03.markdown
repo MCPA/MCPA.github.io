@@ -1,0 +1,35 @@
+---
+layout: post
+title:  "Natas Level 3"
+date:   2015-09-28 13:33
+categories: natas wargame web overthewire
+author: Leander
+---
+This is a solution guide to the Natas3 Level at <a href="http://natas3.natas.labs.overthewire.org">overthewire</a>. This write-up was created on 5 March 2015.
+
+First connect to the website
+<ul><li>http://natas3.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas3 and password sJIJNW6ucpu6HPZ1ZAchaDtwd7oGrD14</li></ul>
+
+Once again we are presented with a page that says there is nothing. As before I first start by checking the source of the webpage and find this peculiar comment.
+
+{% highlight html linenos %}
+<div id="content">
+There is nothing on this page
+<!-- No more information leaks!! Not even Google will find it this time... -->
+</div>
+{% endhighlight %}
+
+So that makes me start thinking about search engines. In a nutshell the robots.txt file on a webpage tells search engines which directories not to enter. More information about the robots.txt file can be found @ <a href = "http://www.robotstxt.org/robotstxt.html">here</a>.
+
+Now my first step is to check that file by visiting http://natas3.natas.labs.overthewire.org/robots.txt At this point I am presented with the robots.txt file which contains:
+
+<code>User-agent: *
+Disallow: /s3cr3t/</code>
+
+This seems like an interesting place to visit, so let's change our url again: http://natas3.natas.labs.overthewire.org/s3cr3t/
+
+Another users.txt file! When we read it we find ...
+<code>natas4:Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ</code>
+
+Bingo!

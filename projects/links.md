@@ -15,7 +15,7 @@ date: YYYY-MM-DD HH:MM:SS
       <td>The Military Cyber Professionals Association (MCPA)</td>
 </tr>
 <tr>
-      <td><a href="https://github.com/Resources">https://goo.gl/XhUv3Q</a></td>
+      <td><a href="https://goo.gl/XhUv3Q">https://goo.gl/XhUv3Q</a></td>
       <td>Contains HoT CTF Resources.</td>
 </tr>
 <tr>

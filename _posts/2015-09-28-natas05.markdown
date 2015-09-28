@@ -1,0 +1,20 @@
+---
+layout: post
+title:  "Natas Level 5"
+date:   2015-09-28 13:34
+categories: natas wargame web overthewire
+author: Leander
+---
+This is a solution guide to the Natas5 Level at [overthewire](http://natas5.natas.labs.overthewire.org). This write-up was created on 5 March 2015.
+
+First connect to the website
+<ul><li>http://natas5.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas5 and password iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq</li></ul>
+
+Something new again! This time when we visit the challenge page we get the following: <code>Access disallowed. You are not logged in </code>
+
+Well that's strange, because we just logged in ... so let's start by checking the html source again. No dice ...
+
+Well if we were suppose to login, lets check out cookies since cookies generally keep up with that sort of information. Not so suprisingly, we do have a cookie and the value is set to 0. If you are interested in how cookies work in PHP a useful site is located [here](http://www.phpnerds.com/article/using-cookies-in-php/2). However, let's go ahead and change the value from 0 to 1 with a cookie editor (go get one if you don't have one installed), and then bingo! 
+
+Access granted. The password is <code>natas6:aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1</code>

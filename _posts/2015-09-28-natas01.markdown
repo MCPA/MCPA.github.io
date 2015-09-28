@@ -3,6 +3,7 @@ layout: post
 title:  "Natas Level 1"
 date:   2015-09-28 12:52
 categories: natas wargame web overthewire
+author: Leander
 ---
 This is a solution guide to the Natas1 Level at <a href="http://natas1.natas.labs.overthewire.org">overthewire</a>. This write-up was created on 5 March 2015.
 

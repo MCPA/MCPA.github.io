@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "Natas Level 4"
+date:   2015-09-28 13:34
+categories: natas wargame web overthewire
+author: Leander
+---
+This is a solution guide to the Natas4 Level at [overthewire](http://natas4.natas.labs.overthewire.org). This write-up was created on 5 March 2015.
+
+First connect to the website
+<ul><li>http://natas4.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas4 and password Z9tkRkWmpt9Qr7XrR5jWRkgOU901swEZ</li></ul>
+
+Something new this time! This time when we visit the challenge page we get the following: 
+
+<code>
+Access disallowed. You are visiting from "" while authorized users should come only from (http://natas5.natas.labs.overthewire.org/
+</code>
+
+Ok, well I check the source code anyways, and nothing is really there. However, it does keep track of where I have already been when I visit the page. For example, when I refresh the page it says:
+
+<code>
+Access disallowed. You are visiting from "http://natas4.natas.labs.overthewire.org/index.php?url=http://natas5.natas.labs.overthewire.org/" while authorized users should come only from "http://natas5.natas.labs.overthewire.org/"</code>
+
+It just so happens that since I'm using Chrome I can use my handy dandy referrer editor. For example I changed my referrer url to "i am awesome" and it resulted in the following:
+
+<code>
+Access disallowed. You are visiting from "i am awesome" while authorized users should come only from "http://natas5.natas.labs.overthewire.org/"</code>
+
+
+Ok so enough playing around, let's put the correct address in! Which gives us:
+
+<code>
+Access granted. The password for natas5 is iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq </code>
+
+Goal! Let's move on, <code>natas5:iX6IOfmpN7AYOQGPwtn3fXpbaJVJcHfq</code>

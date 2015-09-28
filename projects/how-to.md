@@ -27,6 +27,7 @@ The write-up blog must contain a header based on <a href="http://jekyllrb.com/do
 <figure class="highlight"><pre><code class="language-text" data-lang="text">---
 layout: post
 title:  "Blogging Like a Hacker!!!"
+author: HackerBob
 date:   2015-09-27 21:56
 categories: CSAW crypto python
 ---</code></pre></figure>

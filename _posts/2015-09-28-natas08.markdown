@@ -1,0 +1,23 @@
+---
+layout: post
+title:  "Natas Level 8"
+date:   2015-09-28 13:50
+categories: natas wargame web overthewire
+author: Leander
+---
+
+{% highlight php linenos %}
+<?php
+function decodeSecret($secret){
+  return base64_decode(strrev(hex2bin($secret)));
+  }
+  
+print "The secret is: "; 
+print decodeSecret("3d3d516343746d4d6d6c315669563362");
+print "\n";
+?>
+{% endhighlight %}
+
+oubWYf2kBq
+
+natas9 pw is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl

@@ -1,0 +1,46 @@
+---
+layout: post
+title:  "Natas Level 6"
+date:   2015-09-28 13:35
+categories: natas wargame web overthewire
+author: Leander
+---
+This is a solution guide to the Natas6 Level at [overthewire](http://natas6.natas.labs.overthewire.org). This write-up was created on 5 March 2015.
+
+First connect to the website
+<ul><li>http://natas6.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas6 and password aGoY4q2Dc6MgDq4oL4YtoKtyAg9PeHa1</li></ul>
+
+Once again something new. We have an input field, a button to click, and a link which says view sourcecode. First let's try hitting submit just to see what happens. Big surprise - wrong secret. So now let's check the source code.
+
+{% highlight php linenos %}
+<?php
+include "includes/secret.inc";
+ 
+if(array_key_exists("submit", $_POST)) {
+	if($secret == $_POST['secret']) {
+		print "Access granted. The password for natas7 is <censored>";
+	} 
+	else {
+		print "Wrong secret";
+	}}
+?>
+ 
+<form method=post>
+Input secret: <input name=secret><br>
+<input type=submit name=submit>
+</form>
+{% endhighlight %}
+
+It's pretty simple source code, it essentially compares the value submitted in the text field to the contents in a file called <code>secret.inc</code>. So let's see if we can access that file located on line 2 to get the contents @ http://natas6.natas.labs.overthewire.org/includes/secret.inc
+
+At this point we find the following:
+{% highlight php %}<?php
+$secret = "FOEIUWGHFEEUHOFUOIU";
+?>{% endhighlight %}
+
+So now we know our secret value. Return back to the main page and enter it into the text field and see what happens ...
+
+Access granted. The password is <code>natas7:7z3hEENjQtflzgnT29q7wAvMNfZdh0i9</code>
+
+Bingo!
