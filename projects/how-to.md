@@ -29,9 +29,7 @@ layout: post
 title:  "Blogging Like a Hacker!!!"
 date:   2015-09-27 21:56
 categories: CSAW crypto python
-author: "Leander"
----
-Content goes here!</code></pre></figure>
+---</code></pre></figure>
 
 Following the header, content can be of just about any type such as, HTML or LaTEX. If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
 
