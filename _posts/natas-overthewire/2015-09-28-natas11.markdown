@@ -57,6 +57,19 @@ if($data["showpassword"] == "yes") {
     print "The password for natas12 is <censored><br>";}?>
 {% endhighlight %}
 
+This challenge is similar to the Natas8 level in that we are going to have to reverse an encryption routine. However, our first hint tells us that they used XOR to encrypt cookies. First, let's examine our code.
+<ul<li>Line 2 tells us that we have default data</li>
+<li>Lines 3 - 12 is the encryption mechanism</li>
+<li>Lines 14-25 give us the restrictions for input into the background color box, and also the conditions which when met show us the flag</li>
+<li>Lines 27 and 28 provides information on how the default data is saved as a cookie</li></ul>
+
+Let's begin my looking at the encryption mechanism. We need a key, but don't have one. However, we do have the original data. Fortunately, the properties for XOR will allow us to recover the key. The original data xored with the key produces the ciphertext, but the original data xored with the ciphertext will also produce the key!
+<code> P = Data, K = Key, C = Ciphertext
+P ^ K = C
+P ^ C = K
+</code>
+Therefore we need to pass the original data the the xor function in place of the key and the cookie sitting in our browser as the input text. This will produce the key. After getting the key, place the real value for the key into the encryption function and pass it a slightly modified json encoded array. Both versions are shown together below inside one php script.
+
 {% highlight php linenos %}
 <?php
 $defaultdata = json_encode(array( "showpassword"=>"yes", "bgcolor"=>"#ffffff")); 
@@ -85,4 +98,6 @@ print "\n";
 ?>
 {% endhighlight %}
 
-Next Password: EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3
+After retrieving our newly created cookie, go back to the browser, update your cookie, and then receive the password for level 12.
+
+Next Password: natas12:EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3
