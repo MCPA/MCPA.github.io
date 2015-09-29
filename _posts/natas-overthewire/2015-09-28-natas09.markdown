@@ -1,0 +1,31 @@
+---
+layout: post
+title:  "Natas Level 9"
+date:   2015-09-28 19:28
+categories: natas wargame web overthewire
+author: Leander
+---
+This is a solution guide to the Natas9 Level at [overthewire](http://natas9.natas.labs.overthewire.org). This write-up was created on 28 September 2015.
+
+First connect to the website
+<ul><li>http://natas9.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas9 and password W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl</li></ul>
+
+Let's begin first by clicking on view source and examining the code for this level.
+{% highlight php linenos %}
+<?php
+$key = "";
+ 
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];}
+ 
+if($key != "") {
+    passthru("grep -i $key dictionary.txt");}?>
+{% endhighlight %}
+
+Lines 3 and 4 checks to see if what we search for returns a key in an item called "needle". Lines 6 and 7 pass our input to a search function using a php function called passthru(). This looks like something we may be able to take advantage of because passthru has no checking on the input. It takes whatever value is in <code>$key</code> and executes it blindly trusting that the user is not doing something funny. If you want to learn more about passthru() check out this [link](http://php.net/manual/en/function.passthru.php).
+
+So now the question is what can we send through the search field to find us a flag. This requires some bash tricks which will allow me to execute multiple commands and ignore the rest of the command line. Bash has several metacharacters which when unquoted lend special control functions to the user. Click [here](http://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands) to check out the bash reference manual. We should try using the ";" control function because it allows the user to execute multiple commands with the same command line entry.
+<code>; cat /etc/natas_webpass/natas10 #</code>
+
+There we have it the password is natas10:nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
