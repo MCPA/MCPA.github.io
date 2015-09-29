@@ -31,7 +31,7 @@ if(array_key_exists("submit", $_POST)) {
 ?>
 {% endhighlight %}
 
-Forunately, we are able to get the algorithim used to encrypt the secret we need to input. We can see that on line 2 we have an encoded secret. So now we have to reverse the encodeSecret function to pass this level. So in order to reverse the code we need to take the encodedSecret from line to and pass it through a decoding sequence:
+Forunately, we are able to get the algorithim used to encrypt the secret we need to input. We can see that on line 2 we have an encoded secret. So now we have to reverse the encodeSecret function to pass this level. So in order to reverse the code we need to take the encodedSecret from line 2 and pass it through a decoding sequence that does the following:
 <ul><li>Reverse the order of the algorithim starting from the outside in</li>
 <li>Pass the original encoded secret as a string to the newly created decoding function</li>
 <li>Enter the plaintext secret into the web browser</li></ul>
