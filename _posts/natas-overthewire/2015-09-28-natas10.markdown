@@ -41,4 +41,4 @@ Which returns our password on the last line:
 .htpasswd:natas10:$1$sDWfJg4Y$ewf9jvw0ChWUA3KARHisg.
 /etc/natas_webpass/natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</code></pre></figure>
 
-The password is natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
+The password is <code>natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</code>
