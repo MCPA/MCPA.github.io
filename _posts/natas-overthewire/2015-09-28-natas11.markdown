@@ -69,7 +69,7 @@ Let's begin my looking at the encryption mechanism. We need a key, but don't hav
 P ^ K = C
 P ^ C = K</code></pre></figure>
 
-Therefore we need to pass the original data the the xor function in place of the key and the cookie sitting in our browser as the input text. This will produce the key. After getting the key, place the real value for the key into the encryption function and pass it a slightly modified json encoded array. Both versions are shown together below inside one php script.
+Therefore we need to pass the original data to the xor function in place of the key and the cookie sitting in our browser as the input text. This will produce the key. After getting the key, place the real value for the key into the encryption function and pass it a slightly modified json encoded array. Both versions are shown together below inside one php script.
 
 {% highlight php linenos %}
 <?php
