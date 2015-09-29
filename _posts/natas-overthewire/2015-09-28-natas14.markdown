@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Natas Level 13"
+title:  "Natas Level 14"
 date:   2015-09-28 21:00
 categories: natas wargame web overthewire
 author: Nate
