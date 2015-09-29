@@ -9,7 +9,7 @@ This is a solution guide to the Natas10 Level at [overthewire](http://natas10.na
 
 First connect to the website
 <ul><li>http://natas10.natas.labs.overthewire.org</li>
-<li>Enter the following as the username natas9 and password nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</li></ul>
+<li>Enter the following as the username natas10 and password nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</li></ul>
 
 Let's begin first by clicking on view source and examining the code for this level.
 {% highlight php linenos %}
