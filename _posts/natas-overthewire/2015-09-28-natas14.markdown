@@ -5,7 +5,7 @@ date:   2015-09-28 21:00
 categories: natas wargame web overthewire
 author: Nate
 ---
-![NATAS 14](/_assets/natas14.png)
+![NATAS 14](https://MCPA.github.io/_assets/natas14.png)
 
 NATAS 14 presents you with a login form and yet again provides you with a link to view the PHP script that processes form submissions.
 
