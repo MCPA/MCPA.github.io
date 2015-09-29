@@ -23,13 +23,18 @@ function encodeSecret($secret) {
  
 if(array_key_exists("submit", $_POST)) {
     if(encodeSecret($_POST['secret']) == $encodedSecret) {
-    print "Access granted. The password for natas9 is <censored>";
-    } else {
-    print "Wrong secret";
-    }
-}
+     print "Access granted. The password for natas9 is <censored>";
+    } 
+    else {
+     print "Wrong secret";
+    }}
 ?>
 {% endhighlight %}
+
+Forunately, we are able to get the algorithim used to encrypt the secret we need to input. We can see that on line 2 we have an encoded secret. So now we have to reverse the encodeSecret function to pass this level. So in order to reverse the code we need to take the encodedSecret from line to and pass it through a decoding sequence:
+<ul><li>Reverse the order of the algorithim starting from the outside in</li>
+<li>Pass the original encoded secret as a string to the newly created decoding function</li>
+<li>Enter the plaintext secret into the web browser</li></ul>
 
 {% highlight php linenos %}
 <?php
@@ -43,6 +48,6 @@ print "\n";
 ?>
 {% endhighlight %}
 
-oubWYf2kBq
+Note that first we transform the secret into binary, because the last operation was to transform to hex. Next, we reverse the binary string. Last, we have to base64 decode the string. Our resulting output is <code>oubWYf2kBq</code>. When we place the decoded output into the web text box and click submit. Bingo!
 
-natas9 pw is W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
+The password is natas9:W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
