@@ -29,7 +29,8 @@ if($key != "") {
 
 This challenge is very similar to the last challenge except that it filters and checks for the following characters <code>[;|&]</code>. After the check it still uses the same php function called *passthru()*. If you want to learn more about *passthru()* check out this [link](http://php.net/manual/en/function.passthru.php). So now we have to find a way to send *passthru()* a command which will show us the flag inside /etc/natas_webpass/natas11.
 
-This time we are going to send grep an actual valid command to search for our key. You can find more about grep [here](http://www.tutorialspoint.com/unix_commands/grep.htm). Of note we know that we don't have to worry about case due to the *-i* switch, and we also know that grep expects to have a pattern to search for followed by a named input file. So let's try searching for all text with .* in the /etc/natas_webpass/natas11 directory.
+This time we are going to send grep an actual valid command to search for our key. You can find more about grep [here](http://www.tutorialspoint.com/unix_commands/grep.htm). Of note we know that we don't have to worry about case due to the *-i* switch, and we also know that grep expects to have a pattern to search for followed by a named input file. So let's try searching for all text with .* in the /etc/natas_webpass/natas11 directory. Now let's place the crafted input into the search field:
+
 <code> .* /etc/natas_webpass/natas11 #</code>
 
 Which returns our password on the last line:
