@@ -11,17 +11,17 @@ NATAS 14 presents you with a login form and yet again provides you with a link t
 
 This page was specifically crafted for this challenge to let you see the script that runs on the server.  Normally, you wouldn't be able to view PHP on the client unless something was misconfigured or it was intentionally displayed.
 
-```php
+<% highlight php linenos %>
 <?php
 if(array_key_exists("username", $_REQUEST)) {
     $link = mysql_connect('localhost', 'natas14', '<censored>');
     mysql_select_db('natas14', $link);
-
+ 
     $query = "SELECT * from users where username=\"".$_REQUEST["username"]."\" and password=\"".$_REQUEST["password"]."\"";
     if(array_key_exists("debug", $_GET)) {
         echo "Executing query: $query<br>";
     }
-
+ 
     if(mysql_num_rows(mysql_query($query, $link)) > 0) {
             echo "Successful login! The password for natas15 is <censored><br>";
     } else {
@@ -30,7 +30,8 @@ if(array_key_exists("username", $_REQUEST)) {
     mysql_close($link);
 } else {
 ?>
-```
+<% endhighlight %>
+
 First of all, if you're not familiar with PHP, it always helps to look these functions up in the official documentation at http://php.net/manual/en/.  You'll need to be familiar with the predefined variable [$_REQUEST]( http://php.net/manual/en/reserved.variables.request.php ), [array_key_exists]( http://php.net/manual/en/function.array-key-exists.php ), and [mysql_num_rows]( http://php.net/manual/en/function.mysql-num-rows.php ) .  
 
 Just by looking at the $query string (if you are familiar with PHP or web application security), we can tell two things:
@@ -53,7 +54,7 @@ Okay so the debug parameter is going to be useful for showing us what SQL query 
 
 Hitting enter, we get the following page:
 
-![url_test_parameters_page](/_assets/natas14_url_test_parameters_page.png)
+![url_test_parameters_page](https://MCPA.github.io/_assets/natas14_url_test_parameters_page.png)
 
 Most SQL Injections require escaping quotations, so lets see what happens if we introduce an extra quote into the username:
 
