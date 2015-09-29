@@ -1,10 +1,35 @@
 ---
 layout: post
 title:  "Natas Level 8"
-date:   2015-09-28 13:50
+date:   2015-09-28 19:08
 categories: natas wargame web overthewire
 author: Leander
 ---
+This is a solution guide to the Natas8 Level at [overthewire](http://natas8.natas.labs.overthewire.org). This write-up was created on 28 September 2015.
+
+First connect to the website
+<ul><li>http://natas8.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas8 and password DBfUBfqQG69KvJvJ1iAbMoIpwSNQ9bWe</li></ul>
+
+The first thing we see is a text box where we can input a secret and submit it for something. When clicking submit it with nothing in the box we get "wrong secret". So let's click on the link that says view source code.
+
+{% highlight php linenos %}
+<?php
+$encodedSecret = "3d3d516343746d4d6d6c315669563362";
+ 
+function encodeSecret($secret) {
+    return bin2hex(strrev(base64_encode($secret)));
+}
+ 
+if(array_key_exists("submit", $_POST)) {
+    if(encodeSecret($_POST['secret']) == $encodedSecret) {
+    print "Access granted. The password for natas9 is <censored>";
+    } else {
+    print "Wrong secret";
+    }
+}
+?>
+{% endhighlight %}
 
 {% highlight php linenos %}
 <?php
