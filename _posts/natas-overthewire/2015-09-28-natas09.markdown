@@ -28,4 +28,4 @@ Lines 3 and 4 checks to see if what we search for returns a key in an item calle
 So now the question is what can we send through the search field to find us a flag. This requires some bash tricks which will allow me to execute multiple commands and ignore the rest of the command line. Bash has several metacharacters which when unquoted lend special control functions to the user. Click [here](http://www.gnu.org/software/bash/manual/bash.html#Shell-Builtin-Commands) to check out the bash reference manual. We should try using the ";" control function because it allows the user to execute multiple commands with the same command line entry.
 <code>; cat /etc/natas_webpass/natas10 #</code>
 
-There we have it the password is natas10:nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu
+There we have it the password is <code>natas10:nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</code>
