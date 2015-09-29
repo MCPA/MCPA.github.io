@@ -12,7 +12,7 @@ NATAS 14 presents you with a login form and yet again provides you with a link t
 This page was specifically crafted for this challenge to let you see the script that runs on the server.  Normally, you wouldn't be able to view PHP on the client unless something was misconfigured or it was intentionally displayed.
 
 ```php
-<?
+<?php
 if(array_key_exists("username", $_REQUEST)) {
     $link = mysql_connect('localhost', 'natas14', '<censored>');
     mysql_select_db('natas14', $link);
