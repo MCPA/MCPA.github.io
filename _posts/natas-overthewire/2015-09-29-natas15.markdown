@@ -87,9 +87,12 @@ Conveniently for us, natas16 is a valid username.
 
 Great.  Now all we need to do is guess a 64 alphanumeric password!  Actually, it's not that hard.  MySQL provides a few convenient string comparison features that will make this effort a lot less taxing.
 
-First, instead of asking mysql if the password = 'string_value', which will return true if there is an exact match in the database, the LIKE keyword will perform a string comparison on a per-character basis.  You can check out the documentation here: https://dev.mysql.com/doc/refman/5.0/en/string-comparison-functions.html
+First, instead of asking mysql if the password = 'string_value', which will return true if there is an exact match in the database, the LIKE keyword will perform a string comparison on a per-character basis.  You can check out the documentation here: 
+
+https://dev.mysql.com/doc/refman/5.0/en/string-comparison-functions.html
 
 Second, since we don't know the collation of the password field, and we want to ensure our string comparisons are case-sensitive, we can use the BINARY keyword to force a case-sensitive comparison.  More information on this keyword is available in the documentation here:
+
 https://dev.mysql.com/doc/refman/5.0/en/charset-binary-op.html
 
 Finally, MySQL allows the use of wildcards in your string comparisons.  This will allow us to essentially ask the database if username natas16 has a password that contains a given character anywhere in the string.
@@ -97,7 +100,7 @@ Finally, MySQL allows the use of wildcards in your string comparisons.  This wil
 So the way to solve this challenge is to use the confirmation of the user existing to inject an additional query to ask whether the username AND password together is found in the database.  Our blind sql injection will be combined with a brute force attack to ask about every alphanumeric character until we find a match.  However, to make things easier, we'll first establish the list of characters that exist in the password before we try to brute force guess the exact order that those characters are found.
 
 The SQL Query will look something like this:
-{% highlight sql linenos %}
+{% highlight sql %}
 SELECT * from users where username="natas16" and password LIKE BINARY "%W%"
 {% endhighlight %}
 
