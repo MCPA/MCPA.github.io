@@ -101,4 +101,4 @@ print "\n";
 
 After retrieving our newly created cookie, go back to the browser, update your cookie, and then receive the password for level 12.
 
-Next Password: natas12:EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3
+Next Password: <code>natas12:EDXp0pS26wLKHZy1rDBPUZk0RKfLGIR3</code>
