@@ -5,7 +5,7 @@ date:   2015-09-28 21:00
 categories: natas wargame web overthewire
 author: Nate
 ---
-![NATAS 14](/_assets/natas14.png)
+![Screenshot1](/images/natas14.png)
 
 NATAS 14 presents you with a login form and yet again provides you with a link to view the PHP script that processes form submissions.
 
@@ -43,37 +43,37 @@ b) the script is getting input from the [$_REQUEST]( http://php.net/manual/en/re
 While it's perfectly possible to solve this challenge by using the form provided on the page, the following line of code has an if statement that checks for a debug parameter in the HTTP GET array.  Lets see how useful an echo of the $query string can be...
 
 To do this, your url should start with the following structure:
-![URL]({{ site.url }}/_assets/natas14_url.png)
+![URL](/images/natas14_url.png)
 
 If you hit enter with the url above using those blank parameters, the page result looks like this:
-![blank_result](/_assets/natas14_blank_result.png)
+![blank_result](/images/natas14_blank_result.png)
 
 Okay so the debug parameter is going to be useful for showing us what SQL query is sent to the database.  Let's add some test parameters:
 
-![url_test_parameters](/_assets/natas14_url_test_parameters.png)
+![url_test_parameters](/images/natas14_url_test_parameters.png)
 
 Hitting enter, we get the following page:
 
-![url_test_parameters_page](https://MCPA.github.io/_assets/natas14_url_test_parameters_page.png)
+![url_test_parameters_page](/images/natas14_url_test_parameters_page.png)
 
 Most SQL Injections require escaping quotations, so lets see what happens if we introduce an extra quote into the username:
 
-![url_introduce_quotation](/_assets/natas14_url_introduce_quotation.png)
+![url_introduce_quotation](/images/natas14_url_introduce_quotation.png)
 
 Now we see an error:
 
-![url_introduce_quotation_page](/_assets/natas14_url_introduce_quotation_page.png)
+![url_introduce_quotation_page](/images/natas14_url_introduce_quotation_page.png)
 
 Besides the fact that the website administrator "forgot" to disable PHP error_reporting, we can tell that by introducing an extra quotation into the username parameter, we were able to cause an error in the SQL Query (the quotations aren't lining up).
 
 A common technique is to provide the DBMS with a query that always evaluates to true:
 
-![tautology_try1](/_assets/natas14_tautology_try1.png)
+![tautology_try1](/images/natas14_tautology_try1.png)
 
 However, you can see that we still need to escape the quotations from the password field.  Let's try it again:
 
-![tautology_try2](/_assets/natas14_tautology_try2.png)
+![tautology_try2](/images/natas14_tautology_try2.png)
 
 Almost, but we still haven't escaped the closing quotation.  In order to do that, we'll have to use it as the closing quotation for our truth condition (1=1):
 
-![success](/_assets/natas14_success.png)
+![success](/images/natas14_success.png)
