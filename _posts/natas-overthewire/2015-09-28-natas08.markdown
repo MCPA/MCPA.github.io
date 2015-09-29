@@ -50,4 +50,4 @@ print "\n";
 
 Note that first we transform the secret into binary, because the last operation was to transform to hex. Next, we reverse the binary string. Last, we have to base64 decode the string. Our resulting output is <code>oubWYf2kBq</code>. When we place the decoded output into the web text box and click submit. Bingo!
 
-The password is natas9:W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl
+The password is <code>natas9:W0mMhUcRRnG8dcghE4qvk3JA9lGt8nDl</code>
