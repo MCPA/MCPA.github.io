@@ -55,11 +55,7 @@ if($key != "") {
 </html>
 {% endhighlight %}
 
-If you pay close attention to the preg_match function above, it will return a positive result if any of the following characters are found in the input we provide to the form:
-
-{% highlight bash %}
-; | & ` \' "
-{% endhiglight %}
+If you pay close attention to the preg_match function above, it will return a positive result if any of the following characters are found in the input we provide to the form: <pre>& | & ` \' "</pre>
 
 Since the passthru function allows us to execute arbitrary commands on the bash shell, this prevents us from doing many things to include the following: multiple commands, piping output from one command to the other, weak and strong quoting (double and single quotes), boolean/logical AND ( & ) and OR ( | ) operators.
 
