@@ -7,7 +7,7 @@ author: Nate
 ---
 ## Step 1: View the source code
 The only difference between this level and natas12 is the line where the file is checked for an image signature.  If you click "View Source Code" at http://natas13.natas.labs.overthewire.org/index-source.html, you'll see this function:
-
+<!--break-->
 {% highlight javascript linenos %}
     } else if (! exif_imagetype($_FILES['uploadedfile']['tmp_name'])) {
         echo "File is not an image";

@@ -10,7 +10,7 @@ author: Nate
 
 ![natas15](/images/natas15.png)
 
-NATAS 15 demonstrates how confirming the contents of a username can be combined with a SQL Injection vulnerability to enable what's called a Blind SQL Injection attack.  If we click on the View sourcecode link shown in the screenshot above, we can once again view the server-side PHP script that the challenge author made available to us (see below).
+NATAS 15 demonstrates how confirming the contents of a username can be combined with a SQL Injection vulnerability to enable what's called a Blind SQL Injection attack.  If we click on the View sourcecode link shown in the screenshot above, we can once again view the server-side PHP script that the challenge author made available to us (see below). <!--break-->
 
 {% highlight html linenos %}
 <html>

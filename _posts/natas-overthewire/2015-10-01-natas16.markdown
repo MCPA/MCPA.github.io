@@ -7,7 +7,7 @@ author: Nate
 ---
 ![natas16](/images/natas16.png)
 
-Natas 16 is a more secure version of Natas 9 and 10.  In this challenge, the server-side code the challenge author provides us allows a passthru but filters on most characters in bash that would allow us to do much at all.  Take a look at the source code the challenge author provides us:
+Natas 16 is a more secure version of Natas 9 and 10.  In this challenge, the server-side code the challenge author provides us allows a passthru but filters on most characters in bash that would allow us to do much at all.  <!--break--> Take a look at the source code the challenge author provides us:
 
 {% highlight html %}
 <html>
