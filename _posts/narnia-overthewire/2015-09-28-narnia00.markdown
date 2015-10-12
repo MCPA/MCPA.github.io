@@ -6,6 +6,7 @@ categories: narnia wargame pwnable overthewire
 author: Leander
 ---
 This is a solution guide to the Narnia0 Level at [overthewire](http://overthewire.org/wargames/narnia/). This write-up was created on 19 November 2014.
+<!--break-->
 
 First connect to the lab
 <ul><li>ssh narnia0@narnia.labs.overthewire.org</li>
