@@ -32,13 +32,14 @@ author: HackerBob
 date:   2015-09-27 21:56
 categories: CSAW crypto Python C Perl
 ---
+
 <h4>__Content Goes Here__</4>
+
 </code></pre></figure>
 
 Following the header, content formatting can be of just about any type such as, HTML or LaTEX. If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">[My helpful screenshot]({{ site.url }}/assets/screenshot.jpg)
-[My helpful screenshot]({{" site.url }}"/assets/screenshot.jpg)
 {{ "{% highlight perl linenos " }}%} code here {{ "{% endhighlight " }}%}</code></pre></figure>
 
 When writing the solution begin with the location of where the challenge can be found if it's an online challenge or soft links to where you uploaded them on this github site.
