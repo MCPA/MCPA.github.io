@@ -24,13 +24,20 @@ Blog pages that are used to create write-ups must be created in the "_posts" dir
 
 <h3>Content Formatting</h3>
 The write-up blog must contain a header based on <a href="http://jekyllrb.com/docs/frontmatter/" hname="YAML Front Matter Link">YAML Front Matter</a>. In general each header should start out looking like the following:
+
 <figure class="highlight"><pre><code class="language-text" data-lang="text">---
 layout: post
 title:  "Blogging Like a Hacker!!!"
 author: HackerBob
 date:   2015-09-27 21:56
-categories: CSAW crypto python
----</code></pre></figure>
+categories: CSAW crypto Python C Perl
+---
+
+Include the location of where the challenge can be found if it's an online challenge or soft links to where you uploaded them on this github site.
+
+Next, describe the steps you took to solve the challenge. This should include links where someone without your expertise can be able to find more if they want to research more. The more you link and the better you describe the solution you made, then the better it will help someone else on the team learn about CTF challenges and secure computing principles. The general rule of thumb is that the reader should have knowledge of at least one high level programming language, a general concept of networking, and a general understanding of crypto.
+
+</code></pre></figure>
 
 Following the header, content can be of just about any type such as, HTML or LaTEX. If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
 
