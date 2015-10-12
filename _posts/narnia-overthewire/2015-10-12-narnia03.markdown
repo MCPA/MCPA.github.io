@@ -14,11 +14,9 @@ First connect to the lab
 * ssh narnia3@narnia.labs.overthewire.org
 * Enter the following as the password vaequeezee
 
-Change directories to the narnia games folder: `cd /narnia`
+Change directories to the narnia games folder: `cd /narnia`. Next, let's examine how we get the password for the next level: `less narnia3.c`
 
-First let's examine how we get the password for the next level: `less narnia3.c`
-
-```c
+{% highlight c linenos %}
 int main(int argc, char **argv){
  
  int  ifd,  ofd;
@@ -53,12 +51,11 @@ int main(int argc, char **argv){
  
  exit(1);
 }
-```
+{% endhighlight %}
 
 This is an interesting problem because the program accepts a command line argument and then does a strcpy() of argv[1], your first argument when running the program. When we check the man pages for strcpy() we find, "The  strcpy()  function copies the string pointed to by src, including the terminating null byte ('\0'), to the buffer  pointed  to  by  dest." We also find at the end of the man page a specific bug (shortcut is shift+gg):
 
-```
-BUGS
+<figure class="highlight"><pre><code class="language-text" data-lang="text">BUGS
  If the destination string of a strcpy() is not large enough, then  any-
  thing  might  happen.   Overflowing  fixed-length  string  buffers is a
  favorite cracker technique for taking complete control of the  machine.
@@ -66,8 +63,7 @@ BUGS
  first needs to check that there's enough space.  This may  be  unneces-
  sary  if you can show that overflow is impossible, but be careful: pro-
  grams can get changed over time, in ways that may make  the  impossible
- possible.
- ```
+ possible.</code></pre></figure>
  
 Great so now we know we have another buffer overflow, and you can find more information about buffer overflows at [exploit-db](https://www.exploit-db.com/papers/13207/). So knowing this information we now know that strcpy() will take everything it finds in argv[1] until it reaches a null character, but the buffer for ifile is only 32 bytes. If our argv[1] were longer than 32 bytes it would overflow into something, but now the question is:
 
@@ -76,14 +72,16 @@ Great so now we know we have another buffer overflow, and you can find more info
 
 First, lets make some files. Since we know that the buffer needs to be overrun by 32 bytes we need to name a file something that is larger than 32 bytes. After the file is created we can test our theory with:
 
-```bash 
+{% highlight bash linenos %}
 python -c 'print(len("/tmp/" + "a"*27))' #verify our temp folder is long enough
 mkdir -p $(python -c 'print ("/tmp/" + "a"*27 + "/tmp")') #create the directory
 cd $(python -c 'print ("/tmp/" + "a"*27 + "/tmp")') #change to the directory
 /narnia/narnia3 `pwd`/abc #test theory
-```
+{% endhighlight %}
 
 This creates a directory in the tmp folder called aaaaaaaaaaaaaaaaaaaaaaaaaaa and the screenshot tells us that we are either overunning the ifile or the ofile. Let's examine which we are overrunning with `objdump -d -M intel /narnia/narnia3`
 
 
 Beginning at 0x8048526 the character string /dev/null for ofile is placed onto the top of the stack at esp+58, followed by ifile at esp+38 as shown at 0x8048579.
+
+<h3>Still working on remainder of write-up</h3>
