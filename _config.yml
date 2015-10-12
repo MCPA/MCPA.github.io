@@ -10,7 +10,7 @@ highlighter: pygments
 baseurl: ''
 paginate: 5
 permalink: pretty
-version: 1.0.0
+version: 1.1.7
 
 # Base Jekyll Format Author
 #	name:	Mark Otto
