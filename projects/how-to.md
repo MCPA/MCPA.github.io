@@ -32,17 +32,19 @@ author: HackerBob
 date:   2015-09-27 21:56
 categories: CSAW crypto Python C Perl
 ---
-
-Include the location of where the challenge can be found if it's an online challenge or soft links to where you uploaded them on this github site.
-
-Next, describe the steps you took to solve the challenge. This should include links where someone without your expertise can be able to find more if they want to research more. The more you link and the better you describe the solution you made, then the better it will help someone else on the team learn about CTF challenges and secure computing principles. The general rule of thumb is that the reader should have knowledge of at least one high level programming language, a general concept of networking, and a general understanding of crypto.
-
+Place Content Here
 </code></pre></figure>
 
-Following the header, content can be of just about any type such as, HTML or LaTEX. If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
+Following the header, content formatting can be of just about any type such as, HTML or LaTEX. If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">[My helpful screenshot]({{ site.url }}/assets/screenshot.jpg)
 {{ "{% highlight perl linenos " }}%} code here {{ "{% endhighlight " }}%}</code></pre></figure>
+
+When writing the solution begin with the location of where the challenge can be found if it's an online challenge or soft links to where you uploaded them on this github site.
+
+Next, describe the steps you took to solve the challenge. This should include links where someone without your expertise can be able to find more if they want to research more. The general rule of thumb is that the reader should have knowledge of at least one high level programming language, a general concept of networking, and a general understanding of crypto.
+
+We want to help someone understand not only the solution, but the what, how, and why you came to the solution you found. This will help develop the entire team.
 
 <h3>Post It!</h3>
 After you are done creating the initial filename following our formatting template and creating the content inside your write-up file, push your update to the github repo. The only files that you need to commit should be the _posts folder. After you have committed your updates Jekyll will handle the rest!
