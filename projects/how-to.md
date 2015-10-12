@@ -10,7 +10,7 @@ This page is designed to help members post write-ups using the Jekyll formatting
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">git clone https://github.com/MCPA/MCPA.github.io </code></pre></figure>
 
-After you have the repo cloned you will be able to navigate to the "_posts" directory where you can add individual write-ups and then push them to the github site. Check out this <a name="Help Site" href="http://gitref.org/basic/">github help site</a> if you are unsure how to use a git repository.
+After you have the repo cloned you will be able to navigate to the "_posts" directory where you can add individual write-ups and then push them to the github site. Check out this to learn [how to fork](https://help.github.com/articles/fork-a-repo/) if you are unsure how to use a git repository.
 
 <h3>Filename Template</h3>
 Blog pages that are used to create write-ups must be created in the "_posts" directory and must follow a specific format for the file name. Where <code>YEAR</code> is a four-digit number, <code>MONTH</code> and <code>DAY</code> are both two-digit numbers, and <code>MARKUP</code> is the file extension representing the format used in the file.
@@ -53,7 +53,16 @@ We want to help someone understand not only the solution, but the what, how, and
 <h3>Post It!</h3>
 After you are done creating the initial filename following our formatting template and creating the content inside your write-up file, push your update to the github repo. The only files that you need to commit should be the _posts folder. After you have committed your updates Jekyll will handle the rest!
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">git status #check and see what files you need to add
+<figure class="highlight"><pre><code class="language-text" data-lang="text">
+
+<h5>Commit directly to the repo</h5>
+
+git status #check and see what files you need to add
 git add "list of files you are adding to the repo"
 git commit -m "leave us all a message of what you did"
-git push</code></pre></figure>
+git push
+
+<h5>Commit your forked repo changes</h5>
+Check out how to create a pull request [here](https://help.github.com/articles/using-pull-requests/)
+
+</code></pre></figure>
