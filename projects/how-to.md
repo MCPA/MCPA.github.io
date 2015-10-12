@@ -10,7 +10,7 @@ This page is designed to help members post write-ups using the Jekyll formatting
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">git clone https://github.com/MCPA/MCPA.github.io </code></pre></figure>
 
-After you have the repo cloned you will be able to navigate to the "_posts" directory where you can add individual write-ups and then push them to the github site. Check out this to learn [how to fork](https://help.github.com/articles/fork-a-repo/) if you are unsure how to use a git repository.
+After you have the repo cloned you will be able to navigate to the "_posts" directory where you can add individual write-ups and then push them to the github site. Check out this to learn [how to use github](http://git-scm.com/book/en/v2/Getting-Started-Git-Basics) or if you've used github before you can learn [how to fork](https://help.github.com/articles/fork-a-repo/) if you are unsure how to use a git repository.
 
 <h3>Filename Template</h3>
 Blog pages that are used to create write-ups must be created in the "_posts" directory and must follow a specific format for the file name. Where <code>YEAR</code> is a four-digit number, <code>MONTH</code> and <code>DAY</code> are both two-digit numbers, and <code>MARKUP</code> is the file extension representing the format used in the file.
