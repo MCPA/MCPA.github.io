@@ -25,24 +25,35 @@ Blog pages that are used to create write-ups must be created in the "_posts" dir
 <h3>Content Formatting</h3>
 The write-up blog must contain a header based on <a href="http://jekyllrb.com/docs/frontmatter/" hname="YAML Front Matter Link">YAML Front Matter</a>. In general each header should start out looking like the following:
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">---
+<figure class="highlight"><pre><code class="language-text" data-lang="text">{{ strip_html }}---
 layout: post
 title:  "Blogging Like a Hacker!!!"
 author: HackerBob
 date:   2015-09-27 21:56
 categories: CSAW crypto Python C Perl
 ---
+*Note 1: There is no need to create a title Jekyll handles that for you
 
-<h4>__Content Goes Here__</4>
+Image (if neccessary)
 
-</code></pre></figure>
+Intro Paragraph
 
-Following the header, content formatting can be of just about any type such as, HTML or LaTEX. If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
+break comment *Note 2: this has to be formatted specifically, see below
+
+Image (if neccessary)
+
+Paragraph 1
+
+Paragraph 2
+
+...</code></pre></figure>
+
+Following the header, content formatting can be found [here](http://sourceforge.net/p/jekyllc/bugs/markdown_syntax) and . If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">[My helpful screenshot]({{ site.url }}/assets/screenshot.jpg)
 {{ "{% highlight perl linenos " }}%} code here {{ "{% endhighlight " }}%}</code></pre></figure>
 
-When writing the solution begin with the location of where the challenge can be found if it's an online challenge or soft links to where you uploaded them on this github site.
+When writing the solution begin with the location of where the challenge can be found if it's an online challenge or soft links to where you uploaded them on this github site. After you've written this introduction paragraph make sure you add the ``` <!--break--> ``` comment so the jekyll parsing engine can create a preview off your writeup.
 
 Next, describe the steps you took to solve the challenge. This should include links where someone without your expertise can be able to find more if they want to research more. The general rule of thumb is that the reader should have knowledge of at least one high level programming language, a general concept of networking, and a general understanding of crypto.
 
@@ -55,14 +66,11 @@ After you are done creating the initial filename following our formatting templa
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">
 
-<h5>Commit directly to the repo</h5>
-
+***Commit directly to the repo if this is a solution write-up
 git status #check and see what files you need to add
 git add "list of files you are adding to the repo"
 git commit -m "leave us all a message of what you did"
 git push
 
-<h5>Commit your forked repo changes</h5>
-Check out how to create a pull request [here](https://help.github.com/articles/using-pull-requests/)
-
-</code></pre></figure>
+***Commit your forked repo changes if you are making changes to the website look and feel
+Check out how to create a pull request @ https://help.github.com/articles/using-pull-requests/</code></pre></figure>

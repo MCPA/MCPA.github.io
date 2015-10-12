@@ -4,13 +4,25 @@ title: Home
 ---
 
 <!-- This loops through the paginated posts -->
-	{% for post in paginator.posts %}
+	{% for post in paginator.posts limit 6 %}
   	<h1><a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
   	<p>
     <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.author %} &#149; {{ post.author }}{% endif %}</span>
   	</p>
   	<div class="content">
-    	{{ post.content }}
+  		{% if post.content contains '<!--break-->' %}
+  		<!-- the split only works if the writer remembers to add the specific html comment
+  				 that Jekyll is looking for -->
+				{{ post.content | split:'<!--break-->' | first | replace: '<!--break-->', '<a class="anchor" id="read-more"></a>' }}
+    	{% else if post.content.size > 150 %}
+    		<!-- there is a possibility this will mess up rendered content 
+    		     but this serves as a catch-all for longer posts if the writer forgets
+    		     to add the break -->
+				{{ post.content | truncatewords: 30 }} 
+				<a href="{{ post.url }}">read more</a>
+			{% else %}
+				{{ post.content }}
+		{% endif %}
   	</div>
 	{% endfor %}
 
