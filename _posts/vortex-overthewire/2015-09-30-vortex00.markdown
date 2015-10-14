@@ -6,9 +6,26 @@ categories: vortex wargame web overthewire
 author: Natri
 ---
 
+Prompt tells us to do the following tasks:
+<ol>
+<li>Connect to server on specific port</li>
+<li>Read in 4 unsigned integers in host byte order</li>
+<li>Add them together</li>
+<li>Send back sum</li>
+</ol>
 
-<!--break-->
+They have given us a hint as well that the machine running the server is a 32bit x86 machine which runs little endian architecture.  This is important when reading the raw data stream to determine byte order.
 
+To accomplish this task lets use python.  
+
+<h2>First lets setup the connection:</h2>
+<ul>
+<li>To handle the connection to the server lets import socket {#1}</li>
+<li>To handle the packing and unpacking of messages to/from server lets import struct {#2}</li>
+<li>Set our destination address and port {#4-5}</li>
+<li>Establish the socket {#7}</li>
+<li>Establish the connection {#8}</li>
+</ul>
 {% highlight python linenos %}
 import socket
 import struct
@@ -18,19 +35,62 @@ PORT = 5842
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST,PORT))
-d =0
+{% endhighlight %}
+
+<h2>Receive the data and add them together:</h2>
+<ol>
+<li>Set up a counter for the sum of the four bytes {#1}</li>
+<li>Per task #2 we need to read in four integers so lets setup the loop {#2}</li>
+<li>Since the server is a 32-bit system an integer is going to be 4 bytes long so receive those four bytes {#3}</li>
+<li>Now we need to unpack from little endian to our system format and instead of guessing we will let struct do it for us {#4}</li>
+</ol>
+{% highlight python linenos %}
+total = 0
 for x in xrange(0,4,1):
 	data = s.recv(4)
-	d+= struct.unpack("<I", data)[0]
+	total+= struct.unpack("<I", data)[0]
+{% endhighlight %}
 
-print d
-d = struct.pack("<I",(d & 0xFFFFFFFF))
-print d
-s.send(d)
+<h2>Send back sum:</h2>
+<ol>
+<li>Take the total and pack it up so the distant end can understand and make sure that it is only 8 bytes {#1}</li>
+<li>Send the total to the server {#2}</li>
+<li>Recieve the response {#3}</li>
+<li>Print the response {#4}</li>
+<li>Clean up the connection {#6}</li>
+</ol>
+{% highlight python linenos %}
+total = struct.pack("<I",(total & 0xFFFFFFFF))
+s.send(total)
 response = s.recv(1000)
 print "Recieved: %s" % response
 
 s.close()
 {% endhighlight %}
 
-Would like to rewrite this using pwntools package
+
+<h2>Summary</h2>
+The whole code is below:
+{% highlight python %}
+import socket
+import struct
+
+HOST = 'votex.labs.overthewire.org'
+PORT = 5842
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((HOST,PORT))
+total = 0
+for x in xrange(0,4,1):
+	data = s.recv(4)
+	total+= struct.unpack("<I", data)[0]
+
+total = struct.pack("<I",(total & 0xFFFFFFFF))
+s.send(total)
+response = s.recv(1000)
+print "Recieved: %s" % response
+
+s.close()
+{% endhighlight %}
+
+TODO: Rewrite this using pwntools package in python 
