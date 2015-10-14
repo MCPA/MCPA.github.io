@@ -5,6 +5,7 @@ date:   2015-09-30 22:58
 categories: vortex wargame web overthewire
 author: Natri
 ---
+<!--break-->
 
 Prompt tells us to do the following tasks:
 <ol>
