@@ -15,7 +15,7 @@ Prompt tells us to do the following tasks:
 <li>Send back sum</li>
 </ol>
 
-They have given us a hint as well that the machine running the server is a 32bit x86 machine which runs little endian architecture.  This is important when reading the raw data stream to determine byte order.
+They have given us a hint as well that the machine running the server is a 32bit x86 machine which runs [little endian architecture](https://en.wikipedia.org/wiki/Endianness).  This is important when reading the raw data stream to determine byte order.
 
 To accomplish this task lets use python.  
 
@@ -70,7 +70,7 @@ s.close()
 {% endhighlight %}
 
 
-<h2>Summary</h2>
+<h2>Code-without pwntools</h2>
 The whole code is below:
 {% highlight python %}
 import socket
@@ -94,4 +94,27 @@ print "Recieved: %s" % response
 s.close()
 {% endhighlight %}
 
-TODO: Rewrite this using pwntools package in python 
+<h2>Code-with pwntools</h2>
+I used [pwntools](http://pwntools.readthedocs.org/en/latest/about.html) to make things easier when dealing with sockets (known as tubes in pwnlib) and ssh.  The way this problem is solved is almost identical but with pwnlib it should make it easier in the long run.
+
+{% highlight python %}
+from pwn import *
+
+HOST = 'votex.labs.overthewire.org'
+PORT = 5842
+
+s = remote(HOST,PORT)
+
+d =0
+for x in xrange(0,4,1):
+    data = s.recvn(4)
+    d+= unpack(data, 32, 'little', False)
+
+d = pack(d & 0xFFFFFFFF, 32, 'little', True)
+s.send(d)
+response = s.recv(1000)
+print "Recieved %s" % response
+
+
+s.close()
+{% endhighlight %}
