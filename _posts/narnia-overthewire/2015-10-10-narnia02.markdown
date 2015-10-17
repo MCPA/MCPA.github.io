@@ -7,6 +7,8 @@ author: Leander
 ---
 
 This is a solution guide to the Narnia2 Level at [overthewire](http://overthewire.org/wargames/narnia/) This write-up was originally created on 28 February 2015.
+
+<strong>Challenge Description:</strong> Narnia2 is another buffer overflow vulnerable program. This challenge builds on Narnia0 and Narnia1 where an attacker must determine the proper buffer overflow offset and place shellcode in a location that is known. This allows an attacker to execute arbitrary code.
 <!--break-->
 
 First connect to the lab

@@ -7,6 +7,8 @@ author: Leander
 ---
 
 This is a solution guide to the Narnia1 Level at [overthewire](http://overthewire.org/wargames/narnia/) This write-up was first created on 27 February 2015.
+
+<strong>Challenge Description:</strong> Narnia1 requires the attacker to take advantage of an environment variable called <em>EGG</em>. Essentially, this program will search for this specific enironment variable and then attempt to execute whatever the variable holds. The goal here is to place executable shellcode inside an environment variable.
 <!--break-->
 
 First connect to the lab

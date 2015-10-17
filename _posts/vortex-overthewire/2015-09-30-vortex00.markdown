@@ -5,7 +5,6 @@ date:   2015-09-30 22:58
 categories: vortex wargame web overthewire
 author: Natri
 ---
-<!--break-->
 
 Prompt tells us to do the following tasks:
 <ol>
@@ -16,6 +15,7 @@ Prompt tells us to do the following tasks:
 </ol>
 
 They have given us a hint as well that the machine running the server is a 32bit x86 machine which runs [little endian architecture](https://en.wikipedia.org/wiki/Endianness).  This is important when reading the raw data stream to determine byte order.
+<!--break-->
 
 To accomplish this task lets use python.  
 

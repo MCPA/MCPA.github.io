@@ -6,6 +6,8 @@ categories: narnia wargame pwnable overthewire
 author: Leander
 ---
 This is a solution guide to the Narnia0 Level at [overthewire](http://overthewire.org/wargames/narnia/). This write-up was created on 19 November 2014.
+
+<strong>Challenge Description:</strong> Narnia0 is the beginning challenge for pwnable style challenges on [overthewire](http://overthewire.org/wargames/narnia/). It requires the attacker to utilize a buffer overflow in order to overwrite a variable named <em>val</em> with the hexidecimal value <em>0xdeadbeef</em>. When the attack is successful the vulnerable program will execute a system command which produces a shell. This challenge requires the attacker to send hexidecimal values after determining the buffer overflow offset.
 <!--break-->
 
 First connect to the lab
