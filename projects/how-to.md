@@ -8,8 +8,9 @@ date: 2015-10-17
 
 This page is designed to help members post write-ups using the Jekyll formatting mark-up. First things first. If you want to get started without going through the rest of this guide. Here is the quickstart helper:
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text"><strong>Clone the repo:</strong>
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><strong>Clone the repo and get Jekyll:</strong>
 git clone https://github.com/MCPA/MCPA.github.io
+gem install jekyll
 
 <strong>Then, to create your first post type in:</strong>
 rake post title="Name of Solution Write-up"
