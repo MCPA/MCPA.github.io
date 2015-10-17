@@ -3,14 +3,29 @@ layout: page
 title: Create a Write-up
 permalink: /how-to/
 author: "Leander"
-date: YYYY-MM-DD HH:MM:SS
+date: 2015-10-17
 ---
 
-This page is designed to help members post write-ups using the Jekyll formatting mark-up. First things first. Clone the repo for this site:
+This page is designed to help members post write-ups using the Jekyll formatting mark-up. First things first. If you want to get started without going through the rest of this guide. Here is the quickstart helper:
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">git clone https://github.com/MCPA/MCPA.github.io </code></pre></figure>
+<figure class="highlight"><pre><code class="language-text" data-lang="text"><strong>Clone the repo:</strong>
+git clone https://github.com/MCPA/MCPA.github.io
 
-After you have the repo cloned you will be able to navigate to the "_posts" directory where you can add individual write-ups and then push them to the github site. Check out this to learn [how to use github](http://git-scm.com/book/en/v2/Getting-Started-Git-Basics) or if you've used github before you can learn [how to fork](https://help.github.com/articles/fork-a-repo/) if you are unsure how to use a git repository.
+<strong>Then, to create your first post type in:</strong>
+rake post title="Name of Solution Write-up"
+
+<strong>Next, find and edit your writeup:</strong>
+cd _posts
+
+<strong>Last, make sure it is in the appropriate directory if possible and then use the following commands:</strong>
+git status
+git add .
+git commit -m "Add new content"
+git push</code></pre></figure>
+
+After you have the repo cloned you will be able to navigate to the "_posts" directory where you can add individual write-ups and then push them to the github site. Try to maintain our current cleanliness and formatting/directory structure. 
+
+Check out this to learn [how to use github](http://git-scm.com/book/en/v2/Getting-Started-Git-Basics) or if you've used github before you can learn [how to fork](https://help.github.com/articles/fork-a-repo/) if you are unsure how to use a git repository.
 
 <h3>Filename Template</h3>
 Blog pages that are used to create write-ups must be created in the "_posts" directory and must follow a specific format for the file name. Where <code>YEAR</code> is a four-digit number, <code>MONTH</code> and <code>DAY</code> are both two-digit numbers, and <code>MARKUP</code> is the file extension representing the format used in the file.
