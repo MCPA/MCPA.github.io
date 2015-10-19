@@ -3,7 +3,7 @@ layout: page
 title: Links
 permalink: /links/
 author: "Leander"
-date: YYYY-MM-DD HH:MM:SS
+date: 2015-10-17 22:02
 ---
 <table width="100%">
 <tr>
@@ -29,5 +29,9 @@ date: YYYY-MM-DD HH:MM:SS
 <tr>
       <td><a href="https://goo.gl/Z4kfVU">https://goo.gl/Z4kfVU</a></td>
       <td>HoT ctftime standing.</td>
+</tr>
+<tr>
+      <td><a href="https://www.hot4root.slack.com">https://www.hot4root.slack.com</a></td>
+      <td>Slack Space.</td>
 </tr>
 </table>

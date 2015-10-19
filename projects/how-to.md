@@ -67,7 +67,10 @@ Paragraph 2
 Following the header, content formatting can be found [here](http://sourceforge.net/p/jekyllc/bugs/markdown_syntax) and . If you want to link to a specific image or file then you must upload it to the "_assets" directory. Additionally, if you are adding code blocks then there is also an option to enable syntax highlighting to make the code more readable.
 
 <figure class="highlight"><pre><code class="language-text" data-lang="text">[My helpful screenshot]({{ site.url }}/assets/screenshot.jpg)
-{{ "{% highlight perl linenos " }}%} code here {{ "{% endhighlight " }}%}</code></pre></figure>
+{{ "{% highlight perl linenos " }}%} code here {{ "{% endhighlight " }}%}
+
+You can manually add footnotes with the following annotation [^1].
+[^1]: Later you use this annotation to link the number and the actual footnote together.</code></pre></figure>
 
 When writing the solution begin with the location of where the challenge can be found if it's an online challenge or soft links to where you uploaded them on this github site. After you've written this introduction paragraph make sure you add the ``` <!--break--> ``` comment so the jekyll parsing engine can create a preview off your writeup.
 
