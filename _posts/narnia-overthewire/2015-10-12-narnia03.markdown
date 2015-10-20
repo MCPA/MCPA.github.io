@@ -136,15 +136,15 @@ First, I'm going to build a visual image of what the stack looks like.[^2] Our v
 </tr>
 </table><br/></p>
 
-Confirm the view of the stack by observing is at a designated breakpoint - 0x8048546[^4]. It doesn't look like text, but that is because we are viewing all hexidecimal values. We can type a simple command in order to see the known string in the stack as shown.
+Confirm the view of the stack by observing it at a designated breakpoint - 0x8048546[^4]. It doesn't look like text, but that is because we are viewing all hexidecimal values. We can type a simple command in order to see the known string in the stack as shown: ```x/s $esp+88```
 
 ![gdb stack view at breakpoint](/images/narnia03_gdb_stack_view.png)
 
-Beginning at 0x8048526 the character string /dev/null for ofile is placed onto the top of the stack at esp+58. The next interesting point is around 0x8048579 where a strcpy operation takes arg[0] and copies it into ifile. If we reference our stack table now we can see what is happened to our input earlier, because the "abc" overflowed into the ofile!
+Beginning at 0x8048526 the character string <em>/dev/null</em> for ofile is placed onto the top of the stack at esp+58. The next interesting point is around 0x8048579 where a strcpy operation takes <em>arg[1]</em> and copies it into ifile. If we reference our stack table now we can see what is happened to our input earlier, because the "abc" overflowed into the ofile!
 
 ![objdump screenshot with intel syntax](/images/narnia03_objdump_screenshot.png)
 
-Now it's time to craft our input to take advantage of this vulnerability. The general idea is that we are going to use two file names with the same name to pass as arguments to ifile and ofile. We will take advantage of the write function which was previously writing to /dev/null and make it write something else instead. Which if we create a symbollically linked file as our input we can read the key.
+Now it's time to craft our input to take advantage of this vulnerability. The general idea is that we are going to use two file names with the same name to pass as arguments to ifile and ofile. We will take advantage of the write function which was previously writing to <em>/dev/null</em> and make it write something else instead. Which if we create a symbollically linked file as our input we can read the key.
 
 {% highlight bash linenos %}
 python -c 'print(len("/tmp/" + "a"*27))' #verify our temp folder is long enough
@@ -158,6 +158,8 @@ cat /tmp/abc #read key
 {% endhighlight %}
 
 BINGO! level 4 password is ```thaenohtai```
+
+--------
 
 <h3>Footnotes:</h3>
 [^1]: I use the tmp folder because that is the one of the few globally write/read folders in the linux system from which I don't need a specific user's access privileages to use. This allows me to create folders inside /tmp which will be owned by myself and then still be able to read other folders or files inside the tmp directory, provided I know the file or directory name.
