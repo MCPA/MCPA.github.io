@@ -157,10 +157,10 @@ chmod 777 /tmp/abc #where the key will be written
 cat /tmp/abc #read key
 {% endhighlight %}
 
-BINGO! level 4 password is ```????```
+BINGO! level 4 password is ```thaenohtai```
 
 <h3>Footnotes:</h3>
 [^1]: I use the tmp folder because that is the one of the few globally write/read folders in the linux system from which I don't need a specific user's access privileages to use. This allows me to create folders inside /tmp which will be owned by myself and then still be able to read other folders or files inside the tmp directory, provided I know the file or directory name.
 [^2]: The numbers I reference are different than what is in the screenshot because I am using decimal instead of hexadecimal number references. It is only a matter of preference and is easier for me to read.
 [^3]: How do I know it's 4 bytes for the variable? Well an integer value has a maximum value of 4,294,967,296. Which factors into a value of 2^32, and last 32 bits / 8, because 8 bits are in a byte, = 4 bytes.
-[^4]: First you have to make sure you have a readable file, next you need to open the file using gdb: ```gdb ./narnia3 test```. Next set a breakpoint: ```b *0x8048546``` and then type ```run```. Last, examine the stack with the following command: ```x /40xw $esp```. If you need to learn more about gdb check it out [here](link to gdb).
+[^4]: First you have to make sure you have a readable file, next you need to open the file using gdb: ```gdb ./narnia3 test```. Next set a breakpoint: ```b *0x8048546``` and then type ```run```. Last, examine the stack with the following command: ```x /40xw $esp```. If you need to learn more about gdb check out [this cheat sheet](http://darkdust.net/files/GDB%20Cheat%20Sheet.pdf).
