@@ -122,7 +122,6 @@ To find out vulnerabilities to smash the stack we need to see how the stack is m
    2. 080485e1: takes memory address and adds 0x100 (this is 256 decimal which is half the buffer size; matches source code)
    3. 080485e6: Puts that value onto the stack
 4. 0804868e and 08048693: the <strong>getchar</strong> c function is called and value is stored in stack at memory location esp+0x18
-5. Interesting to note that only pointers are stored on the stack as can be seen by [ss:esp+x]
 4. Now our stack looks like this
 
 
