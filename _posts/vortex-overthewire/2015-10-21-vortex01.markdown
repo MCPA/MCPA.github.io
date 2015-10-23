@@ -80,7 +80,7 @@ import time
 
 HOST = 'votex.labs.overthewire.org'
 USERNAME = 'vortex1'
-PASS = 'Gq#qu3bF3'
+PASS = ''
 
 s = ssh(host=HOST, user=USERNAME, password=PASS)
 
