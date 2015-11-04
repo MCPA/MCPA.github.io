@@ -117,9 +117,6 @@ log.info(response)
 s.clean()
 {% endhighlight %}
 
-<h2>Endnotes</h2>
-[^1]: http://superuser.com/questions/247127/what-is-and-in-linux
-
 <h2>Complete Program</h2>
 {% highlight python %}
 from pwn import *
@@ -171,3 +168,6 @@ log.info(response)
 s.clean()
 
 {% endhighlight %}
+
+<h2>Endnotes</h2>
+[^1]: http://superuser.com/questions/247127/what-is-and-in-linux
