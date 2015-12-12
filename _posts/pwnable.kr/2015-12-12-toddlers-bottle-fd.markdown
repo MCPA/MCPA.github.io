@@ -13,7 +13,7 @@ Mommy! what is a file descriptor in Linux?
 
 ssh fd@pwnable.kr -p 2222 (pw:guest)</code></pre></figure>
 
-# At the beginning
+## At the beginning
 
 So now we access the challenge through connecting via ssh and then we are provided three files.
 
@@ -45,11 +45,15 @@ int main(int argc, char* argv[], char* envp[]){
 	printf("learn about Linux file IO\n");
 return 0;}{% endhighlight %}
 
+## Making mistakes and not paying enough attention
+
 To begin with I thought that I needed to pass the program a hexidecimal value that would equal ```LETMEWIN\n``` and make sure that it was at least <em>0x1234</em> greater than my input. For example: I converted all the ascii to hex using ```python -c 'import binascii; print binascii.hexlify("LETMEWIN\n");'``` which produced ```4c45544d4557494e0a``` and then I added 0x1234 manually.
 
-After about 40-60 minutes of frustration I realized that this was a file descriptor problem and that really what I needed was to use the read on line 14 to take advantage of this.
+## Solving the problem
 
-In linux/unix operations systems there are generally three standard file descriptors that are always predefined <em>0, 1, and 2</em>.[^1] After realizing this,  I simply calculated the decimal value for 0x1234, which is 4660 and added 1. When I input the value 4661 it set in motion the solution to get the flag.
+After about 40-60 minutes of frustration I realized that this was a file descriptor problem and that really what I needed was to use the <strong><em>read()</em></strong>[^1] on line 14 to take advantage of this.
+
+In linux/unix operations systems there are generally three standard file descriptors that are always predefined <em>0, 1, and 2</em>.[^2] After realizing this,  I simply calculated the decimal value for 0x1234, which is 4660 and added 1. When I input the value 4661 it set in motion the solution to get the flag.
 
 Here is how it worked:
 
@@ -60,7 +64,9 @@ Here is how it worked:
 5. The program is now waiting for input, so now we ```type in LETMEWIN and enter```. Keep in mind when we hit enter it will automatically send the <em>"\n"</em> that we need.
 6. Problem solved and now we got our flag!
 
+Here's how it looks when you take the correct steps - notice I left off the flag. The real practice is going and doing this for yourself!
 ![fd solution](/images/fd_solution.png)
 
 <h3>Footnotes:</h3>
-[^1]: File descriptor 0 is <em>stdin</em>; file descriptor 1 is <em>stdout</em>; and file descriptor 2 is <em>stderr</em>. Go [here](http://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html) to learn about streams and file descriptors. You can also learn about standard file descriptors provided by the linux/unix operations systems [here](http://www.bottomupcs.com/file_descriptors.html).
+[^1]: <strong><em>Read()</strong></em> is a standard C library function. it's prototype looks like: ```read(int fildes, void *buf, size_t nbyte)```. Read() attempts to read nbyte bytes of data from the object referenced by the descriptor fildes into the buffer pointed to by buf.
+[^2]: File descriptor 0 is <em>stdin</em>; file descriptor 1 is <em>stdout</em>; and file descriptor 2 is <em>stderr</em>. Go [here](http://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html) to learn about streams and file descriptors. You can also learn about standard file descriptors provided by the linux/unix operations systems [here](http://www.bottomupcs.com/file_descriptors.html).
