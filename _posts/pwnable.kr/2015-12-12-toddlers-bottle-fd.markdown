@@ -68,5 +68,5 @@ Here's how it looks when you take the correct steps - notice I left off the flag
 ![fd solution](/images/fd_solution.png)
 
 <h3>Footnotes:</h3>
-[^1]: <strong><em>Read()</strong></em> is a standard C library function. it's prototype looks like: ```read(int fildes, void *buf, size_t nbyte)```. Read() attempts to read nbyte bytes of data from the object referenced by the descriptor fildes into the buffer pointed to by buf.
+[^1]: <strong><em>Read()</em></strong> is a standard C library function. it's prototype looks like: ```read(int fildes, void *buf, size_t nbyte)```. Read() attempts to read nbyte bytes of data from the object referenced by the descriptor fildes into the buffer pointed to by buf.
 [^2]: File descriptor 0 is <em>stdin</em>; file descriptor 1 is <em>stdout</em>; and file descriptor 2 is <em>stderr</em>. Go [here](http://www.gnu.org/software/libc/manual/html_node/Streams-and-File-Descriptors.html) to learn about streams and file descriptors. You can also learn about standard file descriptors provided by the linux/unix operations systems [here](http://www.bottomupcs.com/file_descriptors.html).
