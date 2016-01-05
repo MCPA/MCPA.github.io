@@ -64,16 +64,6 @@ Text:  EXEC:cat /tmp/iwlistscan.txt</code></pre></figure>
   * The image displays a bedroom, with a bunkbed, and elf on the shelf feet.  
   * The image also shows some text ```GnomeNET-NorthAmerica```  
 
-------
-
-------
-
-# Endnotes
-
-[^1]: DNS queries and responses are usually sent as UDP packets. The DNS message format is generally used to query and resolve a web address to an IP address instead of humans needing to remember unique IPs. [Click here to learn more DNS Queries and Responses](http://www.firewall.cx/networking-topics/protocols/domain-name-system-dns/160-protocols-dns-query.html)
-
-[^2]: Scapy is a packet manipulation tool capable of decoding, encoding, and other types of networking packet crafting and analysis. One of the better benefits is that you can use it directely with Python without much effort - other than learning how to use Scapy. [Click here to learn more about Scapy](http://www.secdev.org/projects/scapy/)
-
 ### Python script used to extract image and view C2 channel:  
 
 {% highlight python linenos %}
@@ -143,3 +133,13 @@ def main():
 main()
 
 {% endhighlight %}
+
+------
+
+------
+
+# Endnotes
+
+[^1]: DNS queries and responses are usually sent as UDP packets. The DNS message format is generally used to query and resolve a web address to an IP address instead of humans needing to remember unique IPs. [Click here to learn more DNS Queries and Responses](http://www.firewall.cx/networking-topics/protocols/domain-name-system-dns/160-protocols-dns-query.html)
+
+[^2]: Scapy is a packet manipulation tool capable of decoding, encoding, and other types of networking packet crafting and analysis. One of the better benefits is that you can use it directely with Python without much effort - other than learning how to use Scapy. [Click here to learn more about Scapy](http://www.secdev.org/projects/scapy/)
