@@ -41,11 +41,11 @@ Practice sessions are not listed and will be distributed via the team's Google f
       <td>Signed-up</td>
 </tr>
 <tr>
-			<td>Feb 2016</td>
+			<td>15 Feb 2016</td>
 			<td>Break In</td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>---</td>
+      <td>Signed-up</td>
 </tr>
 <tr>
 			<td>4-6 Mar 2016</td>
@@ -83,7 +83,7 @@ Practice sessions are not listed and will be distributed via the team's Google f
       <td>---</td>
 </tr>
 <tr>
-			<td>Apr 2016</td>
+			<td>15-17 Apr 2016</td>
 			<td>PlaidCTF</td>
       <td>Jeopardy</td>
       <td>---</td>
