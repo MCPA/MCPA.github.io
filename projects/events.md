@@ -20,13 +20,6 @@ Practice sessions are not listed and will be distributed via the team's Google f
       <th width="15%">Placement</th>
 </tr>
 <tr>
-      <td>Sep 2015</td>
-      <td><a href="https://ctf.isis.poly.edu/">CSAW Qualifier 2015</a></td>
-      <td>Jeopardy</td>
-      <td>1110 points</td>
-      <td>302/1367</td>
-</tr>
-<tr>
 			<td>Jan 2016</td>
 			<td><a href="http://ghostintheshellcode.com/">Ghost in the Shellcode</a></td>
       <td>Jeopardy</td>
@@ -112,7 +105,7 @@ Practice sessions are not listed and will be distributed via the team's Google f
 </tr>
 <tr>
 			<td>Sep 2016</td>
-			<td>CSAW CTF Quals</td>
+			<td><a href="https://ctf.isis.poly.edu/">CSAW Qualifier 2016</a></td>
       <td>Jeopardy</td>
       <td>---</td>
       <td>---</td>
