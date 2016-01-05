@@ -24,28 +24,28 @@ Practice sessions are not listed and will be distributed via the team's Google f
 			<td><a href="http://ghostintheshellcode.com/">Ghost in the Shellcode</a></td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>Postponed</td>
+      <td>---</td>
 </tr>
 <tr>
 			<td>16-17 Jan 2016</td>
 			<td><a href="http://teaser.insomnihack.ch">Insomni'hack teaser 2016</a></td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>Signed-up</td>
+      <td>---</td>
 </tr>
 <tr>
 			<td>15 Feb 2016</td>
 			<td><a href="https://felicity.iiit.ac.in/15/threads/breakin">Break In</a></td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>Signed-up</td>
+      <td>---</td>
 </tr>
 <tr>
 			<td>4-6 Mar 2016</td>
 			<td><a href="http://bostonkeyparty.net">Boston Key Party</a></td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>Signed-up</td>
+      <td>---</td>
 </tr>
 <tr>
 			<td>Mar 2016</td>
@@ -59,14 +59,14 @@ Practice sessions are not listed and will be distributed via the team's Google f
 			<td><a href="http://bctf.cn">BCTF</a></td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>Signed-up</td>
+      <td>---</td>
 </tr>
 <tr>
 			<td>25-27 Mar 2016</td>
 			<td><a href="https://www.pwn2win.party/?lang=en">Pwn2Win CTF</a></td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>Signed-up</td>
+      <td>---</td>
 </tr>
 <tr>
 			<td>Apr 2016</td>
