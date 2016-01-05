@@ -62,18 +62,18 @@ Practice sessions are not listed and will be distributed via the team's Google f
       <td>---</td>
 </tr>
 <tr>
-			<td>Mar 2016</td>
-			<td>B-Sides Vancouver</td>
-      <td>Jeopardy</td>
-      <td>---</td>
-      <td>---</td>
-</tr>
-<tr>
-			<td>Mar 2016</td>
+			<td>12-14 Mar 2016</td>
 			<td>BCTF</td>
       <td>Jeopardy</td>
       <td>---</td>
+      <td>Signed-up</td>
+</tr>
+<tr>
+			<td>25-27 Mar 2016</td>
+			<td>Pwn2Win CTF</td>
+      <td>Jeopardy</td>
       <td>---</td>
+      <td>Signed-up</td>
 </tr>
 <tr>
 			<td>Apr 2016</td>
