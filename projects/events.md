@@ -31,7 +31,14 @@ Practice sessions are not listed and will be distributed via the team's Google f
 			<td>Ghost in the Shellcode</td>
       <td>Jeopardy</td>
       <td>---</td>
+      <td>Postponed</td>
+</tr>
+<tr>
+			<td>16-17 Jan 2016</td>
+			<td>Insomni'hack teaser 2016</td>
+      <td>Jeopardy</td>
       <td>---</td>
+      <td>Signed-up</td>
 </tr>
 <tr>
 			<td>Feb 2016</td>
@@ -41,11 +48,11 @@ Practice sessions are not listed and will be distributed via the team's Google f
       <td>---</td>
 </tr>
 <tr>
-			<td>Mar 2016</td>
+			<td>4-6 Mar 2016</td>
 			<td>Boston Key Party</td>
       <td>Jeopardy</td>
       <td>---</td>
-      <td>---</td>
+      <td>Signed-up</td>
 </tr>
 <tr>
 			<td>Mar 2016</td>
