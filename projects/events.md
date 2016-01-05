@@ -20,7 +20,7 @@ Practice sessions are not listed and will be distributed via the team's Google f
       <th width="15%">Placement</th>
 </tr>
 <tr>
-			<td>Jan 2016</td>
+			<td>Postponed</td>
 			<td><a href="http://ghostintheshellcode.com/">Ghost in the Shellcode</a></td>
       <td>Jeopardy</td>
       <td>---</td>
