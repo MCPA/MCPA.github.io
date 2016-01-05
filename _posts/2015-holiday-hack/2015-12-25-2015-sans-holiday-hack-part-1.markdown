@@ -64,7 +64,8 @@ Text:  EXEC:cat /tmp/iwlistscan.txt</code></pre></figure>
   * The image displays a bedroom, with a bunkbed, and elf on the shelf feet.  
   * The image also shows some text ```GnomeNET-NorthAmerica```  
 
- 
+# Extraction Script
+
 {% highlight python %}
 from scapy.all import *
 from pwn import *
