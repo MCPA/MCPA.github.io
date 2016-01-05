@@ -64,10 +64,8 @@ Text:  EXEC:cat /tmp/iwlistscan.txt</code></pre></figure>
   * The image displays a bedroom, with a bunkbed, and elf on the shelf feet.  
   * The image also shows some text ```GnomeNET-NorthAmerica```  
 
-### Python script used to extract image and view C2 channel:  
-
+ 
 {% highlight python %}
-
 from scapy.all import *
 from pwn import *
 from colorama import *
@@ -131,7 +129,6 @@ def main():
     print Fore.MAGENTA + Style.BRIGHT + "\nCarved out the image successfully and stored the output in a file called %s\n" % (filename+"-output")
 
 main()
-
 {% endhighlight %}
 
 ------
