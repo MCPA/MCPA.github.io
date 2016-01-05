@@ -74,17 +74,18 @@ Text:  EXEC:cat /tmp/iwlistscan.txt</code></pre></figure>
 
 [^2]: Scapy is a packet manipulation tool capable of decoding, encoding, and other types of networking packet crafting and analysis. One of the better benefits is that you can use it directely with Python without much effort - other than learning how to use Scapy. [Click here to learn more about Scapy](http://www.secdev.org/projects/scapy/)
 
-### Python script used to extract image and view C2 channel:
+### Python script used to extract image and view C2 channel:  
 
 {% highlight python linenos %}
+
 from scapy.all import *
 from pwn import *
 from colorama import *
-# Colorama constants are:
-#     Colors are Black, Red, Green, Yellow, Blue, Magenta, Cyan, White, and Reset
-#     Can be Fore or Back
-#     Can Style with Dim, Normal, Bright, Reset_All
-# Example: Fore.RED + Style.BRIGHT + "Hello World"
+    # Colorama constants are:
+    #     Colors are Black, Red, Green, Yellow, Blue, Magenta, Cyan, White, and Reset
+    #     Can be Fore or Back
+    #     Can Style with Dim, Normal, Bright, Reset_All
+    # Example: Fore.RED + Style.BRIGHT + "Hello World"
 
 if __name__ == "__main__":
     if len(sys.argv) < 2 or len(sys.argv) > 2:
@@ -140,4 +141,5 @@ def main():
     print Fore.MAGENTA + Style.BRIGHT + "\nCarved out the image successfully and stored the output in a file called %s\n" % (filename+"-output")
 
 main()
+
 {% endhighlight %}
