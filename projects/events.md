@@ -13,8 +13,8 @@ Practice sessions are not listed and will be distributed via the team's Google f
 
 <table width="100%">
 <tr>
-      <th width="15%">Date</th>
-      <th width="35%">Event</th>
+      <th width="20%">Date</th>
+      <th width="30%">Event</th>
       <th width="20%">Style</th>
       <th width="15%">Points Scored</th>
       <th width="15%">Placement</th>
