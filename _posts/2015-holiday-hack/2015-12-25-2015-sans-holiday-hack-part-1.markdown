@@ -66,7 +66,7 @@ Text:  EXEC:cat /tmp/iwlistscan.txt</code></pre></figure>
 
 ### Python script used to extract image and view C2 channel:  
 
-{% highlight python linenos %}
+{% highlight python %}
 
 from scapy.all import *
 from pwn import *
