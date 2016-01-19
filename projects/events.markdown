@@ -116,7 +116,7 @@ HoT members participate in competitions as directed by the schedule of events be
       <td>---</td>
       <td>---</td>
 </tr>
-<p></table><br/></p>
+</table>
 
 ## Participation  
 
