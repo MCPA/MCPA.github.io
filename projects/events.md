@@ -5,9 +5,10 @@ permalink: /events/
 author: "Leander"
 date: 2016-01-19 00:17:20
 ---
+
 HoT members participate in competitions as directed by the schedule of events below. The team's participation is <u>not</u> limited to ONLY the events in this list. Participation in other events will depend on level of interest by team members. Should any member find a competition of interest they can contact the team captain or executive officer so that he or she may gauge membership interest and build a team for specific events as needed
 
-## Schedule
+## Schedule  
 
 <table width="100%">
 <tr>
@@ -117,11 +118,11 @@ HoT members participate in competitions as directed by the schedule of events be
 </tr>
 <p></table><br/></p>
 
-## Participation
+## Participation  
 
 Participation is voluntary and no attempts will be made to force team members to compete, practice, or train. Opportunities will be available for members to share their experience and knowledge through a collaborative means such as Google Hangouts or central repositories such as Github. Outside of collaborative opportunities team members will conduct self-improvement in order to enhance the overall capabilities of the team.
 
-## Practice
+## Practice  
 
 Practice sessions are not listed and will be distributed via the team's Google forum. In general all team practices will be the last Saturday of each month. Practices may also increase as we near events in order to divide skill sets, assign team leaders, assign responsibilities, and orient ourselves against past challenges.
 
