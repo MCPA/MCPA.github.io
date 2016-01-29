@@ -33,9 +33,9 @@ HoT members participate in competitions as directed by the schedule of events be
       <td>120/245</td>
 </tr>
 <tr>
-      <td>24-26 Jan 2016</td>
-      <td><a href="https://felicity.iiit.ac.in/">Break In</a></td>
-      <td>Jeopardy</td>
+      <td><s>24-26 Jan 2016</s></td>
+      <td><s><a href="https://felicity.iiit.ac.in/">Break In</a></s></td>
+      <td><s>Jeopardy</s></td>
       <td>---</td>
       <td>---</td>
 </tr>
@@ -75,16 +75,23 @@ HoT members participate in competitions as directed by the schedule of events be
       <td>---</td>
 </tr>
 <tr>
-      <td>Apr 2016</td>
-      <td>UCSB iCTF</td>
-      <td>Attack-Defend</td>
+      <td>15-17 Apr 2016</td>
+      <td>PlaidCTF</td>
+      <td>Jeopardy</td>
       <td>---</td>
       <td>---</td>
 </tr>
 <tr>
-      <td>15-17 Apr 2016</td>
-      <td>PlaidCTF</td>
+      <td>20-24 Apr 2016</td>
+      <td><a href="http://420blaze.in/">BlazeCTF</a></td>
       <td>Jeopardy</td>
+      <td>---</td>
+      <td>---</td>
+</tr>
+<tr>
+      <td>Apr 2016</td>
+      <td>UCSB iCTF</td>
+      <td>Attack-Defend</td>
       <td>---</td>
       <td>---</td>
 </tr>
@@ -125,5 +132,3 @@ Participation is voluntary and no attempts will be made to force team members to
 ## Practice  
 
 Practice sessions are not listed and will be distributed via the team's Google forum. In general all team practices will be the last Saturday of each month. Practices may also increase as we near events in order to divide skill sets, assign team leaders, assign responsibilities, and orient ourselves against past challenges.
-
-
