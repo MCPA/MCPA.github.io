@@ -81,7 +81,7 @@ ciphertext = open("warrior.txt", "r").read()
 for s in range(len(file_list)):
     key = RSA.importKey(open(file_list[s], "r").read())
     plaintext = key.encrypt(ciphertext, 0)
-    if re.search('the', str(plaintext)):
+    if re.search('the|and|but|plane|fighter|warrior', str(plaintext), re.I):
         print plaintext
 {% endhighlight %}
 
