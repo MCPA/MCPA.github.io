@@ -16,6 +16,8 @@ author: "Leander"
 
 The Crypto5 challenge requires us to parse out public keys from a file ```all_keys.txt```, which contains 49 different public keys. We are also given an encrypted file ```warrior.txt```, which has information in it about the fighter described in the problem. We are fortunate enought to know that the corresponding public key <strong>IS</strong> included inside the 49 keys.
 
+![intro](/images/2016-HackIM-challenge.png)
+
 ## Solving the Problem
 
 The first problem we have to solve is parsing out each one of the keys inside the file. We can see that each public key is formatted with a header, text in the middle, and a footer.
