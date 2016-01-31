@@ -40,9 +40,9 @@ Since I know that each public key is 9 lines long, I can create a quick <em>for<
 
 Now that I have the public keys separated out I can try using each key against the encrypted text file ```warrior.txt```. Since I saved the name of each file I created inside a list, I can now iterate over that list without having to reach out into the current directory.
 
-I do this by iterating over each item in the ```file_list``` I created. I open each public key, read the contents, and then import the contents as an RSA key using ```RSA.importKey()```. Next, I can <strong>encrypt</strong> the ciphertext and retrieve the plaintext results. I don't want to read through 49 different results and manually search for the valid plaintext.
+I do this by iterating over each item in the ```file_list``` I created. I open each public key, read the contents, and then import the contents as an RSA key using ```RSA.importKey()```.[^3] Next, I can <strong>encrypt</strong> the ciphertext and retrieve the plaintext results. I don't want to read through 49 different results and manually search for the valid plaintext.
 
-As a result, I found a useful python module called ```re```. ```re``` contains methods which allow me to conduct searches based on regular expressions. I could then add a quick boolean if statement to validate whether or not the plaintext contained some common trigraphs and text I expected to be in the plaintext, such as fighter or warrior. ```re.search```[^1] checked six different matches while ignoring the case [^2] and if it found any matches it printed the results.
+As a result, I found a useful python module called ```re```. ```re``` contains methods which allow me to conduct searches based on regular expressions. I could then add a quick ```boolean if``` statement to validate whether or not the plaintext contained some common trigraphs and text I expected to be in the plaintext, such as fighter or warrior. ```re.search```[^1] checked six different matches while ignoring the case [^2] and if it found any matches it printed the results.
 
 ![solved](/images/2016-HackIM-solved.png)
 
@@ -53,6 +53,7 @@ Originally, I tried to input several variations of Su-35 'Flanker' jet plane, bu
 ![solution](/images/2016-HackIM-solution.png)
 
 ## Python script
+
 {% highlight python %}
 #!/usr/bin/python
 # regular expression library @ http://www.pythonlearn.com/html-007/cfbook012.html
@@ -89,3 +90,5 @@ for s in range(len(file_list)):
 [^1]: <strong>```re.search(pattern, string, flags=0)```</strong> Scan through string looking for the first location where the regular expression pattern produces a match, and return a corresponding MatchObject instance. Return None if no position in the string matches the pattern; note that this is different from finding a zero-length match at some point in the string.
 
 [^2]: <strong>```re.I```</strong> Perform case-insensitive matching; expressions like [A-Z] will match lowercase letters, too. This is not affected by the current locale.
+
+[^3]: There is an RSA module which allows you to directly use the methods of an RSA key object. More can be found on this module [here](https://pythonhosted.org/pycrypto/Crypto.PublicKey.RSA-module.html)
